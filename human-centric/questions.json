@@ -1,0 +1,122 @@
+[
+	{
+		"name": "Air_Force_One",
+		"questions": [
+			{
+				"type": "multiple",
+				"question": "Is the plane taking off or landing?",
+				"options": ["taking off", "landing"]
+			},
+			{
+				"type": "short",
+				"question": "What is the main color of the plane?"
+			}
+		]
+	},
+	{
+		"name": "Base jumping"
+	},
+	{
+		"name": "Bearpark_climbing",
+		"questions": [
+			{
+				"type": "multiple",
+				"question": "Is the bears climbing up or down the tree?",
+				"options": ["up", "down"]
+			},
+			{
+				"type": "multiple",
+				"question": "What color are the bears?",
+				"options": ["black", "brown", "white", "others"]
+			}
+		]
+	},
+	{
+		"name": "Bike Polo"
+	},
+	{
+		"name": "Bus_in_Rock_Tunnel",
+		"questions": [
+			{
+				"type": "short",
+				"question": "What number is on the front of the bus?"
+			},
+			{
+				"type": "short",
+				"question": "What number is on the license plate of the bus?"
+			},
+			{
+				"type": "short",
+				"question": "What is the text on the back of the bus?"
+			}
+		]
+	},
+	{
+		"name": "car_over_camera",
+		"questions": [
+			{
+				"type": "short",
+				"question": "What color is the car?"
+			}
+		]
+	},
+	{
+		"name": "Car_railcrossing",
+		"questions": [
+			{
+				"type": "short",
+				"question": "What color is the train?"
+			},
+			{
+				"type": "multiple",
+				"question": "What color is the traffic light?",
+				"options": ["red", "yellow", "green"]
+			}
+		]
+	},
+	{
+		"name": "Cockpit_Landing",
+		"questions": [
+			{
+				"type": "multiple",
+				"question": "Is the plane taking off or landing?",
+				"options": ["taking off", "landing"]
+			}
+		]
+	},
+	{
+		"name": "Cooking",
+		"questions": [
+			{
+				"type": "short",
+				"question": "What is the person in the video doing?"
+			},
+			{
+				"type": "short",
+				"question": "What is the main ingredient of the dish he's cooking?"
+			}
+		]
+	},
+	{
+		"name": "Eiffel Tower"
+	},
+	{
+		"name": "Excavators river crossing"
+	},
+	{
+		"name": "Fire Domino"
+	},
+	{
+		"name": "Jumps"
+	},
+	{
+		"name": "Kids_playing_in_leaves"
+	},
+	{
+		"name": "Notre_Dame"
+	},
+	{
+		"name": "Playing_on_water_slide",
+		"questions": []
+	}
+]

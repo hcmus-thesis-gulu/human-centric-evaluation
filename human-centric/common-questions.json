@@ -1,0 +1,56 @@
+[
+	{
+		"id": "main-subject",
+		"type": "checkbox",
+		"question": "What are the main subjects of the video?",
+		"options": ["human(s)", "animal(s)", "object(s)", "none of the above"]
+	},
+	{
+		"id": "count-main",
+		"type": "multiple",
+		"question": "How many of the main subjects are there in the video?",
+		"options": ["0", "1", "2", "3", "more than 3"]
+	},
+	{
+		"id": "human-age",
+		"type": "checkbox",
+		"question": "Which are the main groups of ages appearing in the video?",
+		"options": [
+			"infants (1 month to 1 year)",
+			"children (1 year to 12 years)",
+			"adolescents (13 years to 17 years)",
+			"adults (18 years to 65 years)",
+			"elders (above 65 years)",
+			"none of the above"
+		]
+	},
+	{
+		"id": "out-inside",
+		"type": "multiple",
+		"question": "Is the scene mainly outside or inside?",
+		"options": ["outside", "inside", "both"]
+	},
+	{
+		"id": "anomaly",
+		"type": "multiple",
+		"question": "Is there anything malicious/abnormal happening in the video?",
+		"options": ["yes", "no"]
+	},
+	{
+		"id": "pov",
+		"type": "multiple",
+		"question": "Is the point of view standing still or moving?",
+		"options": ["standing still", "moving"]
+	},
+	{
+		"id": "day-night",
+		"type": "multiple",
+		"question": "Does the scene happen in daylight or at night?",
+		"options": ["in daylight", "at night"]
+	},
+	{
+		"id": "summary",
+		"type": "paragraph",
+		"question": "Summarized the video in your language."
+	}
+]
