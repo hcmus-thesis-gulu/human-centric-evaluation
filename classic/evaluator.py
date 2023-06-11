@@ -1,16 +1,51 @@
 import numpy as np
 
-def computeSummary(scores, length, method='max'):
-    if method == 'max':
-        return np.argpartition(scores, -length)[-length:]
 
-def evaluateSummary(machine_summary, user_summary, mode='frame'):
+# For each segment, compute the mean features and
+# similarity of all features with the mean
+def extractSummary(self, embeddings, segments):
+    segment_scores = []
+    
+    for _, start, end in segments:
+        # Get the associated features
+        segment_features = embeddings[start:end]
+        
+        # Calculate the similarity with representative
+        if self.representative == "mean":
+            mean = mean_embeddings(segment_features)
+        elif self.representative == "middle":
+            mean = segment_features[len(segment_features) // 2]
+        
+        score = similarity_score(segment_features, mean)
+        segment_scores.extend(score.tolist())
+    
+    return np.asarray(segment_scores)
+
+
+def computeSummary(segments, length, method='max'):
+    if length < len(segments):
+        selection_step = len(segments) / length
+        selected_parts = segments[::selection_step]
+        
+        # Select representative of the selected parts
+        selection = extractSummary(selected_parts, method)
+        return selection
+    else:
+        # Select representative of all parts
+        summary = extractSummary(segments, method)
+        unselected
+        selection =  np.argpartition(scores, -length)[-length:]
+        return selection
+
+
+def evaluateSummary(machine_parts, user_summary, mode='frame'):
     f_measures = []
     for user in range(user_summary.shape[1]):
+        user_selected = np.where(user_summary[:, user] > 0)[0]
+        
         if mode == 'frame':
-            user_selected = np.where(user_summary[:, user] > 0)[0]
             length = len(user_selected)
-            machine_selected = computeSummary(machine_summary, length)
+            machine_selected = computeSummary(machine_parts, length)
             
             tp = len(np.intersect1d(machine_selected, user_selected))
             fp = len(np.setdiff1d(machine_selected, user_selected))
@@ -18,11 +53,12 @@ def evaluateSummary(machine_summary, user_summary, mode='frame'):
         elif mode == 'fragment':
             user_fragments = np.unique(user_summary[:, user])
             length = len(user_fragments)
-            machine_selected = computeSummary(machine_summary, length)
+            machine_selected = computeSummary(machine_parts, length)
             
-            intersected_indices = np.intersect1d(machine_selected, np.where(user_summary[:, user] > 0)[0])
+            intersected_indices = np.intersect1d(machine_selected,
+                                                 user_selected)
+            
             tp = len(np.unique(user_summary[intersected_indices, user]))
-            
             fp = length - tp
             fn = length - tp
         
@@ -32,5 +68,7 @@ def evaluateSummary(machine_summary, user_summary, mode='frame'):
         
         f_measures.append(f_measure)
     
-    avg_f_measure = sum(f_measures) / len(f_measures)
-    return avg_f_measure
+    # Maximum F-measure across all users
+    f_score = max(f_measures)
+    
+    return f_score, f_measures
