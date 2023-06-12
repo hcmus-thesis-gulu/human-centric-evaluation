@@ -64,7 +64,9 @@ def search():
                            reverse=True)
     for i, result in enumerate(sorted_result[:10]):
         print(f"{i+1}. Coef: {result['coef']:.2f}, Expand: "
-              + f"{result['expand']}, Score: {result['score']:.4f}")
+              + f"{result['expand']}, Score: {result['f-score']:.4f}"
+              + f", Top-5: {result['top-5']:.4f}"
+              )
     
     result_name = 'original' if args.original else 'test'
     result_path = args.result_folder + f'/{result_name}_results.json'
