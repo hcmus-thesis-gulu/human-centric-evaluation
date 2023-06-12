@@ -74,12 +74,23 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
         print(f'Average F-measure: {f_measure:.4f}')
         print(f"Average summarized rate: {mean_sum_rate:.4f} ± {std_sum_rate:.4f}")
         
+        top_5 = sorted(f_measures.items(), key=lambda x: x[1]['f_score'],
+                       reverse=True)[:5]        
+        results['top_5'] = {
+            top_5[i][0]: top_5[i][1]['f_score'] for i in range(5)
+        }
+        
+        top_5_avg = np.mean([top_5[i][1]['f_score'] for i in range(5)])
+        results['top_5_avg'] = top_5_avg
+        
+        print(f"Top 5 average F-measure: {top_5_avg:.4f}")
+        
     if result_folder is not None:
         json_file = os.path.join(result_folder, 'results.json')
         with open(json_file, 'w', encoding='utf-8') as file:
             json.dump(results, file)
         
-    return f_measure
+    return f_measure, top_5_avg
 
 
 def testSummaries(groundtruth_folder, summary_folder, result_folder,
@@ -156,6 +167,17 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
         print(f'Average F-measure: {f_measure:.4f}')
         print(f"Average summarized rate: {mean_sum_rate:.4f} ± {std_sum_rate:.4f}")
         
+        top_5 = sorted(f_measures.items(), key=lambda x: x[1]['f_score'],
+                       reverse=True)[:5]        
+        results['top_5'] = {
+            top_5[i][0]: top_5[i][1]['f_score'] for i in range(5)
+        }
+        
+        top_5_avg = np.mean([top_5[i][1]['f_score'] for i in range(5)])
+        results['top_5_avg'] = top_5_avg
+        
+        print(f"Top 5 average F-measure: {top_5_avg:.4f}")
+        
         max_f_measure = 0
         
         # Split-wise results
@@ -195,7 +217,7 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
         with open(json_file, 'w', encoding='utf-8') as file:
             json.dump(results, file)
         
-    return max_f_measure
+    return max_f_measure, top_5_avg
 
 
 def evaluate():

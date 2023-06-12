@@ -54,7 +54,8 @@ def search():
             search_result = {
                 'coef': float(coef),
                 'expand': int(expand),
-                'score': float(score)
+                'f-score': float(score[0]),
+                'top-5': float(score[1]),
             }
             search_resuls.append(search_result)
             
