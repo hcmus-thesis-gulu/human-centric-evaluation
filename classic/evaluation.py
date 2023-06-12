@@ -156,7 +156,7 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
         max_f_measure = 0
         
         # Split-wise results
-        for split in splits:
+        for idx, split in enumerate(splits):
             test_keys = split['test_keys']
             f_measures_split = {key: f_measures[key]
                                 for key in f_measures if key in test_keys}
@@ -179,8 +179,8 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
                     }
                 }
                 
-                print(f"Split {split['id']} - Average F-measure: {f_measure:.4f}")
-                print(f"Split {split['id']} - Average summarized rate: "
+                print(f"Split {idx} - Average F-measure: {f_measure:.4f}")
+                print(f"Split {idx} - Average summarized rate: "
                       + f"{mean_sum_rate:.4f} ± {std_sum_rate:.4f}")
                 
                 max_f_measure = max(max_f_measure, split_f_measure)
