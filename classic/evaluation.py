@@ -3,7 +3,9 @@ import argparse
 import time
 import numpy as np
 import json
+
 from scipy.io import loadmat
+import h5py
 from evaluator import evaluateSummary
 
 
@@ -27,18 +29,6 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
             if os.path.exists(scores_path):
                 scores = np.load(scores_path)
                 keyframe_indices = np.load(keyframes_path)
-                
-                # file_end = '_reduced.npy' if reduced_emb else '_embeddings.npy'
-                # embedding_file = filename + file_end
-                # embedding_path = os.path.join(embedding_folder, embedding_file)
-                # embeddings = np.load(embedding_path)
-                
-                # eval_results = evaluateSummary(machine_embeddings=embeddings,
-                #                                machine_parts=scores,
-                #                                user_summary=user_summary,
-                #                                method=method,
-                #                                mode=mode
-                #                                )
                 
                 eval_results = evaluateSummary(scores=scores,
                                                user_summary=user_summary,
@@ -89,8 +79,127 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
         json.dump(results, file)
 
 
+def testSummaries(groundtruth_folder, summary_folder, result_folder,
+                  coef, expand):
+    groundtruth_file = 'eccv16_dataset_summe_google_pool5.h5'
+    groundtruth = h5py.File(groundtruth_folder + '/' + groundtruth_file, 'r')
+    
+    splits_file = 'summe_splits.json'
+    splits = json.load(open(groundtruth_folder + '/' + splits_file,
+                            'r', encoding='utf-8'))
+    test_keys = []
+    for split in splits:
+        test_key = split['test_keys']
+        test_keys.extend(test_key)
+        
+    # Deduplicate
+    test_keys = list(set(test_keys))
+    
+    f_measures = {}
+    
+    for test_key in test_keys:
+        filename = groundtruth[test_key + '/video_name']
+        user_summary = np.array(groundtruth[test_key + '/user_summary'])
+        
+        scores_path = os.path.join(summary_folder,
+                                   filename + '_scores.npy')
+        keyframes_path = os.path.join(summary_folder,
+                                      filename + '_keyframes.npy')
+        
+        if os.path.exists(scores_path):
+            scores = np.load(scores_path)
+            keyframe_indices = np.load(keyframes_path)
+            
+            eval_results = evaluateSummary(scores=scores,
+                                           user_summary=user_summary,
+                                           keyframe_indices=keyframe_indices,
+                                           coef=coef,
+                                           mode='frame',
+                                           expand=expand
+                                           )
+            
+            f_score, f_scores, lengths, summary_length, summary_lengths = eval_results
+            
+            f_measures[test_key] = {
+                'f_score': f_score,
+                'f_scores': f_scores,
+                'lengths': lengths,
+                'summary_length': summary_length,
+                'summary_lengths': summary_lengths,
+                'video_length': len(user_summary),
+                'summarized_rate': summary_length / len(user_summary)
+            }
+            
+            print(f'F-measure of {filename} is {f_score} and summarized '
+                  + f'rate is {summary_length / len(user_summary)}')
+    
+    if f_measures:
+        f_measure = np.mean([f_measures[key]['f_score']
+                             for key in f_measures])
+        
+        mean_sum_rate = np.mean([f_measures[key]['summarized_rate']
+                                 for key in f_measures])
+        std_sum_rate = np.std([f_measures[key]['summarized_rate']
+                               for key in f_measures])
+        
+        results = {
+            'f_measures': f_measures,
+            'average_f_measure': f_measure,
+            'dist_summarized_rate': {
+                'mean': mean_sum_rate,
+                'std': std_sum_rate,
+            }
+        }
+        
+        print(f'Average F-measure: {f_measure:.4f}')
+        print(f"Average summarized rate: {mean_sum_rate:.4f} ± {std_sum_rate:.4f}")
+        
+        max_f_measure = 0
+        
+        # Split-wise results
+        for split in splits:
+            test_keys = split['test_keys']
+            f_measures_split = {key: f_measures[key]
+                                for key in f_measures if key in test_keys}
+            
+            if f_measures_split:
+                split_f_measure = np.mean([f_measures_split[key]['f_score']
+                                           for key in f_measures_split])
+                
+                split_mean_sum_rate = np.mean([f_measures_split[key]['summarized_rate']
+                                               for key in f_measures_split])
+                split_std_sum_rate = np.std([f_measures_split[key]['summarized_rate']
+                                             for key in f_measures_split])
+                
+                results[f"split_{split['id']}"] = {
+                    'f_measures': f_measures_split,
+                    'average_f_measure': split_f_measure,
+                    'dist_summarized_rate': {
+                        'mean': split_mean_sum_rate,
+                        'std': split_std_sum_rate,
+                    }
+                }
+                
+                print(f"Split {split['id']} - Average F-measure: {f_measure:.4f}")
+                print(f"Split {split['id']} - Average summarized rate: "
+                      + f"{mean_sum_rate:.4f} ± {std_sum_rate:.4f}")
+                
+                max_f_measure = max(max_f_measure, split_f_measure)
+        
+    print(f'Maximum F-measure: {max_f_measure:.4f}')
+    
+    json_file = os.path.join(result_folder, 'results.json')
+    with open(json_file, 'w', encoding='utf-8') as file:
+        json.dump(results, file)
+
+
 def evaluate():
     parser = argparse.ArgumentParser(description='Evaluate machine learning algorithm summaries.')
+    
+    parser.add_argument('--original', action='store_true',
+                        help='Evaluate the original dataset'
+                        )
+    
     parser.add_argument('--groundtruth-folder', type=str, required=True,
                         help='Path to the folder containing groundtruth .mat files')
     parser.add_argument('--summary-folder', type=str, required=True,
@@ -106,11 +215,20 @@ def evaluate():
                         help='Expand around keyframes')
     
     args = parser.parse_args()
-    evaluateSummaries(groundtruth_folder=args.groundtruth_folder,
+    
+    if args.original:
+        evaluateSummaries(groundtruth_folder=args.groundtruth_folder,
+                          summary_folder=args.summary_folder,
+                          result_folder=args.result_folder,
+                          coef=args.coef,
+                          mode=args.mode,
+                          expand=args.expand
+                          )
+    else:
+        testSummaries(groundtruth_folder=args.groundtruth_folder,
                       summary_folder=args.summary_folder,
                       result_folder=args.result_folder,
                       coef=args.coef,
-                      mode=args.mode,
                       expand=args.expand
                       )
 
