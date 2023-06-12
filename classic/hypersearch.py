@@ -60,7 +60,7 @@ def search():
             search_resuls.append(search_result)
             
     # Sort by score
-    sorted_result = sorted(search_resuls, key=lambda x: x['score'],
+    sorted_result = sorted(search_resuls, key=lambda x: x['top-5'],
                            reverse=True)
     for i, result in enumerate(sorted_result[:10]):
         print(f"{i+1}. Coef: {result['coef']:.2f}, Expand: "
