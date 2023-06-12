@@ -48,6 +48,8 @@ from utils import mean_embeddings, similarity_score
 
 
 def computeSummary(scores, keyframe_indices, length):
+    length = int(length)
+    
     if length < len(keyframe_indices):
         selection_step = (len(keyframe_indices) // length) + 1
     else:
