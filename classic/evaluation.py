@@ -66,7 +66,7 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
         
         mean_sum_rate = np.mean([f_measures[key]['summarized_rate']
                                  for key in f_measures])
-        var_sum_rate = np.var([f_measures[key]['summarized_rate']
+        std_sum_rate = np.std([f_measures[key]['summarized_rate']
                                for key in f_measures])
         
         results = {
@@ -74,7 +74,7 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
             'average_f_measure': f_measure,
             'dist_summarized_rate': {
                 'mean': mean_sum_rate,
-                'var': var_sum_rate,
+                'std': std_sum_rate,
             }
         }
         
