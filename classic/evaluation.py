@@ -79,6 +79,7 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
         }
         
         print(f'Average F-measure: {f_measure:.4f}')
+        print(f"Average summarized rate: {mean_sum_rate:.4f} ± {std_sum_rate:.4f}")
         
     json_file = os.path.join(result_folder, 'results.json')
     with open(json_file, 'w', encoding='utf-8') as file:
