@@ -60,13 +60,17 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
         selection = keyframe_indices[::selection_step]
         unselected_scores = np.delete(scores, selection)
         
-        remained_length = min(kf_length - len(selection), len(unselected_scores))
+        remained_length = min(kf_length - len(selection),
+                              len(unselected_scores))
         assert remained_length >= 0
         
         other_selection = np.argpartition(unselected_scores,
-                                            -remained_length)[-remained_length:]
+                                          -remained_length)[-remained_length:]
     except Exception as error:
         print(error)
+        print(f"length: {length}")
+        print(f"expand: {expand}")
+        print(f"selection_step: {selection_step}")
         print(f"kf_length: {kf_length}")
         print(f"len(keyframe_indices): {len(keyframe_indices)}")
         print(f"len(selection): {len(selection)}")
