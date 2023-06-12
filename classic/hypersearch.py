@@ -32,8 +32,8 @@ def search():
     
     search_resuls = []
     
-    for coef in range(args.min_coef, args.max_coef + 1, 0.5):
-        for expand in range(args.max_expand + 1):
+    for coef in np.arange(args.min_coef, args.max_coef + 1, 0.5):
+        for expand in np.arange(args.max_expand + 1):
             if args.original:
                 score = evaluateSummaries(groundtruth_folder=args.groundtruth_folder,
                                           summary_folder=args.summary_folder,
