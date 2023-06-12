@@ -119,8 +119,8 @@ def evaluateSummary(scores, user_summary, keyframe_indices,
                                                  user_selected)
             
             tp = len(np.unique(user_summary[intersected_indices, user]))
-            fp = length - tp
-            fn = length - tp
+            fp = len(np.unique(user_summary[machine_selected, user])) - tp
+            fn = len(np.unique(user_summary[user_selected, user])) - tp
         
         precision = tp / (tp + fp) if tp + fp > 0 else 0
         recall = tp / (tp + fn) if tp + fn > 0 else 0
