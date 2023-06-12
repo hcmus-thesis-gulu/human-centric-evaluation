@@ -52,19 +52,19 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
         length = int(length)
         kf_length = length // (2 * expand + 1)
         
-        print(f"===Video Length: {video_length}===")
-        print(f"===Length: {length}===")
-        print(f"===KF Length: {kf_length}===")
+        # print(f"===Video Length: {video_length}===")
+        # print(f"===Length: {length}===")
+        # print(f"===KF Length: {kf_length}===")
         
         if kf_length < len(keyframe_indices):
             selection_step = (len(keyframe_indices) // kf_length) + 1
         else:
             selection_step = 1
         
-        print(f"===Selection Step: {selection_step}===")
+        # print(f"===Selection Step: {selection_step}===")
         selection = keyframe_indices[::selection_step]
-        print("===KF SELECTION===")
-        print(selection)
+        # print("===KF SELECTION===")
+        # print(selection)
         
         selected_mask = np.isin(scores[:, 0], selection)
         unselected_scores = scores[~selected_mask]
@@ -86,13 +86,13 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
         print(f"len(selection): {len(selection)}")
         print(f"remained_length: {remained_length}")
     
-    print("===OTHER SELECTION===")
-    print(other_selection)
+    # print("===OTHER SELECTION===")
+    # print(other_selection)
     
     selections = np.concatenate((selection, other_selection))
     kf_selections = np.sort(selections)
-    print("===KF SELECTIONS===")
-    print(kf_selections)
+    # print("===KF SELECTIONS===")
+    # print(kf_selections)
     
     summary = np.array([], dtype=np.int32)
     
@@ -103,8 +103,8 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
         kf_summary = np.arange(min_idx, max_idx + 1)
         summary = np.union1d(summary, kf_summary)
     
-    print('===SUMMARY===')
-    print(summary)
+    # print('===SUMMARY===')
+    # print(summary)
     return summary
 
 
