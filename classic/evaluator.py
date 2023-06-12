@@ -78,6 +78,8 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
     
     selections = np.concatenate((selection, other_selection))
     kf_selections = np.sort(selections)
+    print("===KF SELECTIONS===")
+    print(kf_selections)
     
     summary = np.array([], dtype=np.int32)
     
@@ -88,7 +90,7 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
         kf_summary = np.arange(min_idx, max_idx + 1)
         summary = np.union1d(summary, kf_summary)
     
-    print('====================')
+    print('===SUMMARY===')
     print(summary)
     return summary
 
