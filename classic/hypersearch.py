@@ -19,6 +19,8 @@ def search():
                         help='Path to the folder containing groundtruth .mat files')
     parser.add_argument('--summary-folder', type=str, required=True,
                         help='Path to the folder containing output .npy files')
+    parser.add_argument('--result-folder', type=str, default='result',
+                        help='Path to the folder containing the result of evaluation')
     
     parser.add_argument('--mode', type=str, default='frame',
                         help='Evaluation mode: "frame" or "fragment"')
