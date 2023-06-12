@@ -50,7 +50,7 @@ from utils import mean_embeddings, similarity_score
 def computeSummary(scores, keyframe_indices, length, video_length, expand):
     try:
         length = int(length)
-        kf_length = length // expand
+        kf_length = length // (2 * expand + 1)
         
         if kf_length < len(keyframe_indices):
             selection_step = (len(keyframe_indices) // kf_length) + 1
