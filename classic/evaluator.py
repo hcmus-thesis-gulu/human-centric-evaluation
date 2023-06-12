@@ -52,6 +52,10 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
         length = int(length)
         kf_length = length // (2 * expand + 1)
         
+        print(f"===Video Length: {video_length}===")
+        print(f"===Length: {length}===")
+        print(f"===KF Length: {kf_length}===")
+        
         if kf_length < len(keyframe_indices):
             selection_step = (len(keyframe_indices) // kf_length) + 1
         else:
