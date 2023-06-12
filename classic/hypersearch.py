@@ -65,7 +65,9 @@ def search():
         print(f"{i+1}. Coef: {result['coef']:.2f}, Expand: "
               + f"{result['expand']}, Score: {result['score']:.4f}")
     
-    result_path = args.result_folder + '/search_results.json'
+    result_name = 'original' if args.original else 'test'
+    result_path = args.result_folder + f'/{result_name}_results.json'
+    
     with open(result_path, 'w', encoding='utf-8') as result_file:
         json.dump(search_resuls, result_file)
 
