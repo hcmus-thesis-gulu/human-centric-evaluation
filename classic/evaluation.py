@@ -79,8 +79,8 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
         json.dump(results, file)
 
 
-def testSummaries(original_folder, groundtruth_folder, summary_folder,
-                  result_folder, coef, expand):
+def testSummaries(groundtruth_folder, summary_folder, result_folder,
+                  coef, expand):
     groundtruth_file = 'eccv16_dataset_summe_google_pool5.h5'
     groundtruth = h5py.File(groundtruth_folder + '/' + groundtruth_file, 'r')
     
@@ -94,24 +94,10 @@ def testSummaries(original_folder, groundtruth_folder, summary_folder,
         
     # Deduplicate
     test_keys = list(set(test_keys))
-    test_checks = {groundtruth[test_key + '/n_frames']: test_key
-                   for test_key in test_keys}
-    
-    checked_keys = {}
-    for groundtruth_name in os.listdir(original_folder):
-        if groundtruth_name.endswith('.mat'):
-            filename = os.path.splitext(groundtruth_name)[0]
-            groundtruth_path = os.path.join(groundtruth_folder,
-                                            groundtruth_name)
-            video_length = loadmat(groundtruth_path)['nFrames']
-            
-            if int(video_length) in test_checks:
-                checked_keys[test_checks[int(video_length)]] = filename
-    
     f_measures = {}
     
     for test_key in test_keys:
-        filename = checked_keys[test_key]
+        filename = str(np.array(groundtruth[test_key + '/video_name']).astype(str))
         user_summary = np.array(groundtruth[test_key + '/user_summary'])
         
         scores_path = os.path.join(summary_folder,
