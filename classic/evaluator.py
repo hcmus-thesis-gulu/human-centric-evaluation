@@ -61,7 +61,7 @@ def computeSummary(scores, keyframe_indices, length):
     
     try:
         other_selection = np.argpartition(unselected_scores,
-                                        -remained_length)[-remained_length:]
+                                          -remained_length)[-remained_length:]
     except Exception as error:
         print(error)
         print(f"length: {length}")
