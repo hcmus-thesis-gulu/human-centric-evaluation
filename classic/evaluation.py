@@ -61,7 +61,7 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
                 }
                 
                 print(f'F-measure of {filename} is {f_score} and summarized '
-                      + 'rate is {summary_length / len(user_summary)}')
+                      + f'rate is {summary_length / len(user_summary)}')
     
     if f_measures:
         f_measure = np.mean([f_measures[key]['f_score']
