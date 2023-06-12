@@ -73,7 +73,8 @@ def computeSummary(scores, keyframe_indices, length):
     return np.sort(selections)
 
 
-def evaluateSummary(scores, user_summary, keyframe_indices, mode='frame'):
+def evaluateSummary(scores, user_summary, keyframe_indices,
+                    coef, mode='frame'):
     f_scores = []
     lengths = []
     
@@ -84,7 +85,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices, mode='frame'):
             length = len(user_selected)
             machine_selected = computeSummary(scores=scores,
                                               keyframe_indices=keyframe_indices,
-                                              length=length,
+                                              length=coef*length,
                                               )
             
             tp = len(np.intersect1d(machine_selected, user_selected))
@@ -95,7 +96,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices, mode='frame'):
             length = len(user_fragments)
             machine_selected = computeSummary(scores=scores,
                                               keyframe_indices=keyframe_indices,
-                                              length=length,
+                                              length=coef*length,
                                               )
             
             intersected_indices = np.intersect1d(machine_selected,

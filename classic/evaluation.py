@@ -7,7 +7,8 @@ from scipy.io import loadmat
 from evaluator import evaluateSummary
 
 
-def evaluateSummaries(groundtruth_folder, summary_folder, result_folder, mode):
+def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
+                      coef, mode):
     f_measures = {}
     
     for groundtruth_name in os.listdir(groundtruth_folder):
@@ -42,6 +43,7 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder, mode):
                 eval_results = evaluateSummary(scores=scores,
                                                user_summary=user_summary,
                                                keyframe_indices=keyframe_indices,
+                                               coef=coef,
                                                mode=mode
                                                )
                 
@@ -98,6 +100,8 @@ def evaluate():
     #                     help='Whether to use reduced embeddings')
     parser.add_argument('--mode', type=str, default='frame',
                         help='Evaluation mode: "frame" or "fragment"')
+    parser.add_argument('--coef', type=float, default=2.0,
+                        help='Coefficient for taking more frames')
     # parser.add_argument('--method', type=str, default='middle',
     #                     help='Method to evaluate: "middle" or "mean"')
     
@@ -105,6 +109,7 @@ def evaluate():
     evaluateSummaries(groundtruth_folder=args.groundtruth_folder,
                       summary_folder=args.summary_folder,
                       result_folder=args.result_folder,
+                      coef=args.coef,
                       mode=args.mode
                       )
 
