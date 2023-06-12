@@ -74,9 +74,12 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
         print(f'Average F-measure: {f_measure:.4f}')
         print(f"Average summarized rate: {mean_sum_rate:.4f} ± {std_sum_rate:.4f}")
         
-    json_file = os.path.join(result_folder, 'results.json')
-    with open(json_file, 'w', encoding='utf-8') as file:
-        json.dump(results, file)
+    if result_folder is not None:
+        json_file = os.path.join(result_folder, 'results.json')
+        with open(json_file, 'w', encoding='utf-8') as file:
+            json.dump(results, file)
+        
+    return f_measure
 
 
 def testSummaries(groundtruth_folder, summary_folder, result_folder,
@@ -187,9 +190,12 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
         
     print(f'Maximum F-measure: {max_f_measure:.4f}')
     
-    json_file = os.path.join(result_folder, 'results.json')
-    with open(json_file, 'w', encoding='utf-8') as file:
-        json.dump(results, file)
+    if result_folder is not None:
+        json_file = os.path.join(result_folder, 'results.json')
+        with open(json_file, 'w', encoding='utf-8') as file:
+            json.dump(results, file)
+        
+    return max_f_measure
 
 
 def evaluate():
