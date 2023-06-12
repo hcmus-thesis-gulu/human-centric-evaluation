@@ -79,7 +79,7 @@ def computeSummary(scores, keyframe_indices, length, expand):
     
     for kf_idx in kf_selections:
         min_idx = max(0, kf_idx - expand)
-        max_idx = min(len(scores), kf_idx + expand)
+        max_idx = min(len(scores) - 1, kf_idx + expand)
         
         kf_summary = np.arange(min_idx, max_idx + 1)
         summary = np.union1d(summary, kf_summary)
@@ -91,6 +91,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices,
                     coef, mode, expand):
     f_scores = []
     lengths = []
+    summary_lengths = []
     
     for user in range(user_summary.shape[1]):
         user_selected = np.where(user_summary[:, user] > 0)[0]
@@ -128,9 +129,10 @@ def evaluateSummary(scores, user_summary, keyframe_indices,
         
         f_scores.append(f_score)
         lengths.append(length)
+        summary_lengths.append(len(machine_selected))
     
     # Maximum F-measure across all users
     f_score = max(f_scores)
     summary_length = lengths[np.argmax(f_scores)]
     
-    return f_score, f_scores, lengths, summary_length
+    return f_score, f_scores, lengths, summary_length, summary_lengths
