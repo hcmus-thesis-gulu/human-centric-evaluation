@@ -88,6 +88,8 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
         kf_summary = np.arange(min_idx, max_idx + 1)
         summary = np.union1d(summary, kf_summary)
     
+    print('====================')
+    print(summary)
     return summary
 
 
