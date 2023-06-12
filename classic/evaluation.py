@@ -98,7 +98,7 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
     
     for test_key in test_keys:
         filename = str(np.array(groundtruth[test_key + '/video_name']).astype(str))
-        user_summary = np.array(groundtruth[test_key + '/user_summary'])
+        user_summary = np.array(groundtruth[test_key + '/user_summary']).T
         
         scores_path = os.path.join(summary_folder,
                                    filename + '_scores.npy')
