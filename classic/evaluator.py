@@ -58,8 +58,16 @@ def computeSummary(scores, keyframe_indices, length):
     assert remained_length >= 0
     
     unselected_scores = np.delete(scores, selection)
-    other_selection = np.argpartition(unselected_scores,
-                                      -remained_length)[-remained_length:]
+    
+    try:
+        other_selection = np.argpartition(unselected_scores,
+                                        -remained_length)[-remained_length:]
+    except Exception as error:
+        print(error)
+        print(f"length: {length}")
+        print(f"len(keyframe_indices): {len(keyframe_indices)}")
+        print(f"len(selection): {len(selection)}")
+        print(f"remained_length: {remained_length}")
     
     selections = np.concatenate((selection, other_selection))
     return np.sort(selections)

@@ -17,7 +17,7 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder, mode):
                                             groundtruth_name)
             groundtruth = loadmat(groundtruth_path)
             
-            user_summary = groundtruth['user_summary']
+            user_summary = groundtruth['user_score']
             scores_path = os.path.join(summary_folder,
                                        filename + '_scores.npy')
             keyframes_path = os.path.join(summary_folder,
