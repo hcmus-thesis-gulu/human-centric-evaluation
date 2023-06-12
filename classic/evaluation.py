@@ -179,9 +179,9 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
                     }
                 }
                 
-                print(f"Split {idx} - Average F-measure: {f_measure:.4f}")
+                print(f"Split {idx} - Average F-measure: {f_measures_split:.4f}")
                 print(f"Split {idx} - Average summarized rate: "
-                      + f"{mean_sum_rate:.4f} ± {std_sum_rate:.4f}")
+                      + f"{split_mean_sum_rate:.4f} ± {split_std_sum_rate:.4f}")
                 
                 max_f_measure = max(max_f_measure, split_f_measure)
         
