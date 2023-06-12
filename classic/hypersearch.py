@@ -52,8 +52,8 @@ def search():
                                       )
             
             search_result = {
-                'coef': coef,
-                'expand': expand,
+                'coef': float(coef),
+                'expand': int(expand),
                 'score': float(score)
             }
             search_resuls.append(search_result)
