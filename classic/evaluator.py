@@ -47,7 +47,7 @@ from utils import mean_embeddings, similarity_score
 #         return selections
 
 
-def computeSummary(scores, keyframe_indices, length, expand):
+def computeSummary(scores, keyframe_indices, length, video_length, expand):
     length = int(length)
     kf_length = length // expand
     
@@ -79,7 +79,7 @@ def computeSummary(scores, keyframe_indices, length, expand):
     
     for kf_idx in kf_selections:
         min_idx = max(0, kf_idx - expand)
-        max_idx = min(len(scores) - 1, kf_idx + expand)
+        max_idx = min(video_length - 1, kf_idx + expand)
         
         kf_summary = np.arange(min_idx, max_idx + 1)
         summary = np.union1d(summary, kf_summary)
@@ -92,6 +92,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices,
     f_scores = []
     lengths = []
     summary_lengths = []
+    video_length = len(user_summary)
     
     for user in range(user_summary.shape[1]):
         user_selected = np.where(user_summary[:, user] > 0)[0]
@@ -101,6 +102,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices,
             machine_selected = computeSummary(scores=scores,
                                               keyframe_indices=keyframe_indices,
                                               length=coef*length,
+                                              video_length=video_length,
                                               expand=expand,
                                               )
             
@@ -113,6 +115,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices,
             machine_selected = computeSummary(scores=scores,
                                               keyframe_indices=keyframe_indices,
                                               length=coef*length,
+                                              video_length=video_length,
                                               expand=expand,
                                               )
             
