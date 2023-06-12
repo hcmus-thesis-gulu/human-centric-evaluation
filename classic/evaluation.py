@@ -170,7 +170,7 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
                 split_std_sum_rate = np.std([f_measures_split[key]['summarized_rate']
                                              for key in f_measures_split])
                 
-                results[f"split_{split['id']}"] = {
+                results[f"split_{idx}"] = {
                     'f_measures': f_measures_split,
                     'average_f_measure': split_f_measure,
                     'dist_summarized_rate': {
