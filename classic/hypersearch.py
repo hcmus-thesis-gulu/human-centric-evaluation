@@ -23,7 +23,7 @@ def search():
     parser.add_argument('--mode', type=str, default='frame',
                         help='Evaluation mode: "frame" or "fragment"')
     parser.add_argument('--min-coef', type=float, default=1.0)
-    parser.add_argument('--min-coef', type=float, default=5.0)
+    parser.add_argument('--max-coef', type=float, default=5.0)
     parser.add_argument('--max-expand', type=int, default=8)
     
     args = parser.parse_args()
