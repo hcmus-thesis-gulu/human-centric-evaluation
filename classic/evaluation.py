@@ -198,9 +198,9 @@ def evaluate():
     parser.add_argument('--original', action='store_true',
                         help='Evaluate the original dataset'
                         )
-    parser.add_argument('--original-folder', type=str,
-                        help='Path to the folder containing the original dataset'
-                        )
+    # parser.add_argument('--original-folder', type=str,
+    #                     help='Path to the folder containing the original dataset'
+    #                     )
     
     parser.add_argument('--groundtruth-folder', type=str, required=True,
                         help='Path to the folder containing groundtruth .mat files')
@@ -227,8 +227,7 @@ def evaluate():
                           expand=args.expand
                           )
     else:
-        testSummaries(original_folder=args.original_folder,
-                      groundtruth_folder=args.groundtruth_folder,
+        testSummaries(groundtruth_folder=args.groundtruth_folder,
                       summary_folder=args.summary_folder,
                       result_folder=args.result_folder,
                       coef=args.coef,
