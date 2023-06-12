@@ -1,6 +1,7 @@
 import argparse
 import time
 import json
+import numpy as np
 
 from evaluation import evaluateSummaries, testSummaries
 
