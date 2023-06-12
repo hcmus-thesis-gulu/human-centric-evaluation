@@ -60,16 +60,22 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
             selection_step = (len(keyframe_indices) // kf_length) + 1
         else:
             selection_step = 1
-            
+        
+        print(f"===Selection Step: {selection_step}===")
         selection = keyframe_indices[::selection_step]
-        unselected_scores = np.delete(scores, selection)
+        print("===KF SELECTION===")
+        print(selection)
+        
+        selected_mask = np.isin(scores[:, 0], selection)
+        unselected_scores = scores[~selected_mask]
         
         remained_length = min(kf_length - len(selection),
                               len(unselected_scores))
         assert remained_length >= 0
         
-        other_selection = np.argpartition(unselected_scores,
+        other_positions = np.argpartition(unselected_scores[:, 1],
                                           -remained_length)[-remained_length:]
+        other_selection = unselected_scores[other_positions, 0]
     except Exception as error:
         print(error)
         print(f"length: {length}")
@@ -79,6 +85,9 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
         print(f"len(keyframe_indices): {len(keyframe_indices)}")
         print(f"len(selection): {len(selection)}")
         print(f"remained_length: {remained_length}")
+    
+    print("===OTHER SELECTION===")
+    print(other_selection)
     
     selections = np.concatenate((selection, other_selection))
     kf_selections = np.sort(selections)
