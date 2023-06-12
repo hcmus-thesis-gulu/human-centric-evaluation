@@ -8,7 +8,7 @@ from evaluator import evaluateSummary
 
 
 def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
-                      coef, mode):
+                      coef, mode, expand):
     f_measures = {}
     
     for groundtruth_name in os.listdir(groundtruth_folder):
@@ -44,7 +44,8 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
                                                user_summary=user_summary,
                                                keyframe_indices=keyframe_indices,
                                                coef=coef,
-                                               mode=mode
+                                               mode=mode,
+                                               expand=expand
                                                )
                 
                 f_score, f_scores, summary_lengths, summary_length = eval_results
@@ -90,28 +91,25 @@ def evaluate():
     parser = argparse.ArgumentParser(description='Evaluate machine learning algorithm summaries.')
     parser.add_argument('--groundtruth-folder', type=str, required=True,
                         help='Path to the folder containing groundtruth .mat files')
-    # parser.add_argument('--embedding-folder', type=str, required=True,
-    #                     help='Path to the folder containing output .npy files')
     parser.add_argument('--summary-folder', type=str, required=True,
                         help='Path to the folder containing output .npy files')
     parser.add_argument('--result-folder', type=str, default='result',
                         help='Path to the folder containing the result of evaluation')
     
-    # parser.add_argument('--reduced-emb', action='store_true',
-    #                     help='Whether to use reduced embeddings')
     parser.add_argument('--mode', type=str, default='frame',
                         help='Evaluation mode: "frame" or "fragment"')
     parser.add_argument('--coef', type=float, default=2.0,
                         help='Coefficient for taking more frames')
-    # parser.add_argument('--method', type=str, default='middle',
-    #                     help='Method to evaluate: "middle" or "mean"')
+    parser.add_argument('--expand', type=int, default=0,
+                        help='Expand around keyframes')
     
     args = parser.parse_args()
     evaluateSummaries(groundtruth_folder=args.groundtruth_folder,
                       summary_folder=args.summary_folder,
                       result_folder=args.result_folder,
                       coef=args.coef,
-                      mode=args.mode
+                      mode=args.mode,
+                      expand=args.expand
                       )
 
 

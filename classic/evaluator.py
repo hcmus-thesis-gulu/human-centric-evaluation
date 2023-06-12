@@ -47,18 +47,19 @@ from utils import mean_embeddings, similarity_score
 #         return selections
 
 
-def computeSummary(scores, keyframe_indices, length):
+def computeSummary(scores, keyframe_indices, length, expand):
     length = int(length)
+    kf_length = length // expand
     
-    if length < len(keyframe_indices):
-        selection_step = (len(keyframe_indices) // length) + 1
+    if kf_length < len(keyframe_indices):
+        selection_step = (len(keyframe_indices) // kf_length) + 1
     else:
         selection_step = 1
         
     selection = keyframe_indices[::selection_step]
     unselected_scores = np.delete(scores, selection)
     
-    remained_length = min(length - len(selection), len(unselected_scores))
+    remained_length = min(kf_length - len(selection), len(unselected_scores))
     assert remained_length >= 0
     
     try:
@@ -66,17 +67,26 @@ def computeSummary(scores, keyframe_indices, length):
                                           -remained_length)[-remained_length:]
     except Exception as error:
         print(error)
-        print(f"length: {length}")
+        print(f"kf_length: {kf_length}")
         print(f"len(keyframe_indices): {len(keyframe_indices)}")
         print(f"len(selection): {len(selection)}")
         print(f"remained_length: {remained_length}")
     
     selections = np.concatenate((selection, other_selection))
-    return np.sort(selections)
+    kf_selections = np.sort(selections)
+    
+    min_idx = max(0, kf_selections[0] - expand)
+    max_idx = min(len(scores), kf_selections[-1] + expand)
+    
+    summaries = np.arange(min_idx, max_idx + 1)
+    summary_mask = np.isclose(summaries, kf_selections, atol=expand, rtol=0)
+    summary = summaries[summary_mask]
+    
+    return summary
 
 
 def evaluateSummary(scores, user_summary, keyframe_indices,
-                    coef, mode='frame'):
+                    coef, mode, expand):
     f_scores = []
     lengths = []
     
@@ -88,6 +98,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices,
             machine_selected = computeSummary(scores=scores,
                                               keyframe_indices=keyframe_indices,
                                               length=coef*length,
+                                              expand=expand,
                                               )
             
             tp = len(np.intersect1d(machine_selected, user_selected))
@@ -99,6 +110,7 @@ def evaluateSummary(scores, user_summary, keyframe_indices,
             machine_selected = computeSummary(scores=scores,
                                               keyframe_indices=keyframe_indices,
                                               length=coef*length,
+                                              expand=expand,
                                               )
             
             intersected_indices = np.intersect1d(machine_selected,
