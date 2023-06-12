@@ -75,12 +75,14 @@ def computeSummary(scores, keyframe_indices, length, expand):
     selections = np.concatenate((selection, other_selection))
     kf_selections = np.sort(selections)
     
-    min_idx = max(0, kf_selections[0] - expand)
-    max_idx = min(len(scores), kf_selections[-1] + expand)
+    summary = np.array([], dtype=np.int32)
     
-    summaries = np.arange(min_idx, max_idx + 1)
-    summary_mask = np.isclose(summaries, kf_selections, atol=expand, rtol=0)
-    summary = summaries[summary_mask]
+    for kf_idx in kf_selections:
+        min_idx = max(0, kf_idx - expand)
+        max_idx = min(len(scores), kf_idx + expand)
+        
+        kf_summary = np.arange(min_idx, max_idx + 1)
+        summary = np.union1d(summary, kf_summary)
     
     return summary
 
