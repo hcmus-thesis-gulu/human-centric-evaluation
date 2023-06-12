@@ -54,10 +54,10 @@ def computeSummary(scores, keyframe_indices, length):
         selection_step = 1
         
     selection = keyframe_indices[::selection_step]
-    remained_length = length - len(selection)
-    assert remained_length >= 0
-    
     unselected_scores = np.delete(scores, selection)
+    
+    remained_length = min(length - len(selection), len(unselected_scores))
+    assert remained_length >= 0
     
     try:
         other_selection = np.argpartition(unselected_scores,
