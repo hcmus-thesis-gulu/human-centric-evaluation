@@ -6,16 +6,16 @@ import argparse
 from tqdm import tqdm
 from scipy import io as sio
 
-from utils import broadcast_video
+from preprocess.utils import broadcast_video
 
 
-def visualize_video(filename, video_path, user_summaries, demo_folder,
+def visualize_video(filename, video_path, user_summaries, user_folder,
                     fps=None):
     num_users = user_summaries.shape[1]
     
     for user_idx in tqdm(range(num_users)):
         user_file = filename + f'_user{user_idx + 1}.avi'
-        user_path = os.path.join(demo_folder, user_file)
+        user_path = os.path.join(user_folder, user_file)
         
         broadcast_video(input_video_path=video_path,
                         frame_indices=user_summaries[:, user_idx],
@@ -24,7 +24,7 @@ def visualize_video(filename, video_path, user_summaries, demo_folder,
                         )
 
 
-def visualize_videos(video_folder, groundtruth_folder, demo_folder, fps=None):
+def visualize_videos(video_folder, groundtruth_folder, user_folder, fps=None):
     for video_file in os.listdir(video_folder):
         if video_file.endswith('.mp4'):
             filename = video_file[:-4]
@@ -41,19 +41,19 @@ def visualize_videos(video_folder, groundtruth_folder, demo_folder, fps=None):
             visualize_video(filename=filename,
                             video_path=video_path,
                             user_summaries=user_summaries,
-                            demo_folder=demo_folder,
+                            user_folder=user_folder,
                             fps=fps
                             )
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Visualize result')
+    parser = argparse.ArgumentParser(description='Visualize summaries by users')
     parser.add_argument('--video-folder', type=str, required=True,
                         help='Path to folder containing videos')
     parser.add_argument('--groundtruth-folder', type=str, required=True,
                         help='path to folder containing feature files')
-    parser.add_argument('--demo-folder', type=str, required=True,
-                        help='path to folder saving demo videos')
+    parser.add_argument('--user-folder', type=str, required=True,
+                        help='path to folder saving videos from users')
     
     parser.add_argument('--output-fps', type=int, help='video fps')
 
@@ -61,7 +61,7 @@ def main():
     
     visualize_videos(video_folder=args.video_folder,
                      groundtruth_folder=args.groundtruth_folder,
-                     demo_folder=args.demo_folder,
+                     user_folder=args.user_folder,
                      fps=args.output_fps
                      )
 

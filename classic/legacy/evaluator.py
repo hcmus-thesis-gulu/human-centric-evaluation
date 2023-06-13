@@ -1,5 +1,5 @@
 import numpy as np
-from utils import mean_embeddings, similarity_score
+from preprocess.utils import mean_embeddings, similarity_score
 
 
 # # For each segment, compute the mean features and
