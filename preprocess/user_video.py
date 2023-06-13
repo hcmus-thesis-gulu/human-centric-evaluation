@@ -5,23 +5,42 @@ import time
 import argparse
 from tqdm import tqdm
 from scipy import io as sio
-
-from preprocess.utils import broadcast_video
+import cv2 as cv
 
 
 def visualize_video(filename, video_path, user_summaries, user_folder,
                     fps=None):
     num_users = user_summaries.shape[1]
     
-    for user_idx in tqdm(range(num_users)):
-        user_file = filename + f'_user{user_idx + 1}.avi'
+    raw_video = cv.VideoCapture(video_path)
+    width = int(raw_video.get(cv.CAP_PROP_FRAME_WIDTH))
+    height = int(raw_video.get(cv.CAP_PROP_FRAME_HEIGHT))
+    size = (width, height)
+    
+    if fps == None:
+        fps = int(raw_video.get(cv.CAP_PROP_FPS))
+    
+    user_videos = []
+    for user_idx in range(num_users):
+        user_file = filename + f'_{user_idx + 1}.avi'
         user_path = os.path.join(user_folder, user_file)
         
-        broadcast_video(input_video_path=video_path,
-                        frame_indices=user_summaries[:, user_idx],
-                        output_video_path=user_path,
-                        fps=fps
-                        )
+        user_video = cv.VideoWriter(user_path, cv.VideoWriter_fourcc(*'MJPG'),
+                                    fps, size)
+        user_videos.append(user_video)
+    
+    num_frames = int(raw_video.get(cv.CAP_PROP_FRAME_COUNT))
+    for frame_idx in tqdm(range(num_frames), desc='Processing frames'):
+        ret, frame = raw_video.read()
+        if not ret:
+            break
+        for user_idx in range(user_summaries.shape[1]):
+            if user_summaries[frame_idx, user_idx] > 0:
+                user_videos[user_idx].write(frame)
+    
+    for user_video in user_videos:
+        user_video.release()
+    raw_video.release()
 
 
 def visualize_videos(video_folder, groundtruth_folder, user_folder, fps=None):
