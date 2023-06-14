@@ -14,7 +14,8 @@
 		]
 	},
 	{
-		"name": "Base jumping"
+		"name": "Base jumping",
+		"questions": []
 	},
 	{
 		"name": "Bearpark_climbing",
@@ -32,7 +33,8 @@
 		]
 	},
 	{
-		"name": "Bike Polo"
+		"name": "Bike Polo",
+		"questions": []
 	},
 	{
 		"name": "Bus_in_Rock_Tunnel",
@@ -98,25 +100,100 @@
 		]
 	},
 	{
-		"name": "Eiffel Tower"
+		"name": "Eiffel Tower",
+		"questions": []
 	},
 	{
-		"name": "Excavators river crossing"
+		"name": "Excavators river crossing",
+		"questions": []
 	},
 	{
-		"name": "Fire Domino"
+		"name": "Fire Domino",
+		"questions": []
 	},
 	{
-		"name": "Jumps"
+		"name": "Jumps",
+		"questions": []
 	},
 	{
-		"name": "Kids_playing_in_leaves"
+		"name": "Kids_playing_in_leaves",
+		"questions": []
 	},
 	{
-		"name": "Notre_Dame"
+		"name": "Notre_Dame",
+		"questions": []
+	},
+	{
+		"name": "Paintball",
+		"questions": []
+	},
+	{
+		"name": "paluma_jump",
+		"questions": []
+	},
+	{
+		"name": "playing_ball",
+		"questions": [
+			{
+				"type": "short",
+				"question": "What color is the dog?"
+			},
+			{
+				"type": "short",
+				"question": "What color is the crow?"
+			},
+			{
+				"type": "short",
+				"question": "What color is the ball?"
+			}
+		]
 	},
 	{
 		"name": "Playing_on_water_slide",
+		"questions": []
+	},
+	{
+		"name": "Saving dolphines",
+		"questions": [
+			{
+				"type": "multiple",
+				"question": "What are people doing?",
+				"options": [
+					"catching dolphins",
+					"helping dolphins",
+					"none of the above"
+				]
+			}
+		]
+	},
+	{
+		"name": "Scuba",
+		"questions": []
+	},
+	{
+		"name": "St Maarten Landing",
+		"questions": [
+			{
+				"type": "multiple",
+				"question": "Is the plane taking off or landing?",
+				"options": ["taking off", "landing"]
+			},
+			{
+				"type": "short",
+				"question": "What is the main color of the plane?"
+			}
+		]
+	},
+	{
+		"name": "Statue of Liberty",
+		"questions": []
+	},
+	{
+		"name": "Uncut_Evening_Flight",
+		"questions": []
+	},
+	{
+		"name": "Valparaiso_Downhill",
 		"questions": []
 	}
 ]
