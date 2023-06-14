@@ -3,7 +3,13 @@
 		"id": "main-subject",
 		"type": "checkbox",
 		"question": "What are the main subjects of the video?",
-		"options": ["human(s)", "animal(s)", "object(s)", "none of the above"]
+		"options": [
+			"human(s)",
+			"animal(s)",
+			"object(s)",
+			"building(s)",
+			"none of the above"
+		]
 	},
 	{
 		"id": "count-main",
