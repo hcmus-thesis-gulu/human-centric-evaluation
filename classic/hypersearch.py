@@ -7,7 +7,8 @@ from evaluation import evaluateSummaries, testSummaries
 
 
 def print_result(coef, expand, fill_mode, score, idx=None):
-    param = f"coef={coef:.2f}, expand={expand}"
+    expansion = f"{expand:.2f}" if expand < 1 else f"{int(expand)}"
+    param = f"coef={coef:.2f}, expand={expansion}"
     if fill_mode is not None:
         param += f", fill_mode={fill_mode}"
         
