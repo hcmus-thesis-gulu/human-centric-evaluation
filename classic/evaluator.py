@@ -1,10 +1,29 @@
 import numpy as np
+from classic.utils import generate_summary
+
+
+# With shots based on KnapSack
+def calculateSummary(scores, segments, length, video_length,
+                     fill_mode, expand):
+    length = int(length)
+    
+    if length > 0:
+        percentile = length / video_length
+    else:
+        percentile = float(expand)
+        
+    return generate_summary(segments, scores, fill_mode, percentile)
 
 
 def computeSummary(scores, keyframe_indices, length, video_length, expand):
     try:
         length = int(length)
-        kf_length = length // (2 * expand + 1)
+        expansion = int(expand)
+        
+        if length > 0:
+            kf_length = length // (2 * int(expansion) + 1)
+        else:
+            kf_length = len(keyframe_indices)
         
         # print(f"===Video Length: {video_length}===")
         # print(f"===Length: {length}===")
@@ -33,7 +52,7 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
     except Exception as error:
         print(error)
         print(f"length: {length}")
-        print(f"expand: {expand}")
+        print(f"expand: {expansion}")
         print(f"selection_step: {selection_step}")
         print(f"kf_length: {kf_length}")
         print(f"len(keyframe_indices): {len(keyframe_indices)}")
@@ -51,8 +70,8 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
     summary = np.array([], dtype=np.int32)
     
     for kf_idx in kf_selections:
-        min_idx = max(0, kf_idx - expand)
-        max_idx = min(video_length - 1, kf_idx + expand)
+        min_idx = max(0, kf_idx - expansion)
+        max_idx = min(video_length - 1, kf_idx + expansion)
         
         kf_summary = np.arange(min_idx, max_idx + 1)
         summary = np.union1d(summary, kf_summary)
@@ -62,12 +81,17 @@ def computeSummary(scores, keyframe_indices, length, video_length, expand):
     return summary
 
 
-def evaluateSummary(scores, user_summary, keyframe_indices,
-                    coef, mode, expand):
+def evaluateSummary(scores, user_summary, keyframe_indices, segmentation,
+                    coef, mode, fill_mode, expand):
     f_scores = []
     lengths = []
     summary_lengths = []
     video_length = len(user_summary)
+    
+    if mode == 'shot':
+        segments = np.array([[segment['start'], segment['end'],
+                              segment['num_frames']]
+                             for segment in segmentation])
     
     for user in range(user_summary.shape[1]):
         user_selected = np.where(user_summary[:, user] > 0)[0]
@@ -100,6 +124,20 @@ def evaluateSummary(scores, user_summary, keyframe_indices,
             tp = len(np.unique(user_summary[intersected_indices, user]))
             fp = len(np.unique(user_summary[machine_selected, user])) - tp
             fn = len(np.unique(user_summary[user_selected, user])) - tp
+        elif mode == 'shot':
+            machine_summary = calculateSummary(scores=scores,
+                                               segments=segments,
+                                               length=coef*length,
+                                               video_length=video_length,
+                                               fill_mode=fill_mode,
+                                               expand=expand,
+                                               )
+            
+            machine_selected = np.where(machine_summary > 0)[0]
+            
+            tp = len(np.intersect1d(machine_selected, user_selected))
+            fp = len(np.setdiff1d(machine_selected, user_selected))
+            fn = len(np.setdiff1d(user_selected, machine_selected))
         
         precision = tp / (tp + fp) if tp + fp > 0 else 0
         recall = tp / (tp + fn) if tp + fn > 0 else 0

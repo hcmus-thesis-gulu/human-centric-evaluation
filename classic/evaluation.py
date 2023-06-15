@@ -11,6 +11,7 @@ from evaluator import evaluateSummary
 
 def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
                       coef, mode, expand):
+    assert mode != 'shot', 'Shot-based evaluation is not supported yet.'
     f_measures = {}
     
     for groundtruth_name in os.listdir(groundtruth_folder):
@@ -33,8 +34,10 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
                 eval_results = evaluateSummary(scores=scores,
                                                user_summary=user_summary,
                                                keyframe_indices=keyframe_indices,
+                                               segmentation=None,
                                                coef=coef,
                                                mode=mode,
+                                               fill_mode=None,
                                                expand=expand
                                                )
                 
@@ -94,13 +97,20 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
 
 
 def testSummaries(groundtruth_folder, summary_folder, result_folder,
-                  coef, expand):
+                  coef, mode, fill_mode, expand):
+    assert mode != 'fragment', 'Fragment-based testing is not supported yet.'
+    
     groundtruth_file = 'eccv16_dataset_summe_google_pool5.h5'
     groundtruth = h5py.File(groundtruth_folder + '/' + groundtruth_file, 'r')
     
     splits_file = 'summe_splits.json'
-    splits = json.load(open(groundtruth_folder + '/' + splits_file,
-                            'r', encoding='utf-8'))
+    splits_path = os.path.join(groundtruth_folder, splits_file)
+    splits = json.load(open(splits_path, 'r', encoding='utf-8'))
+    
+    segmentations_file = 'segmentations.json'
+    segmentations_path = os.path.join(groundtruth_folder, segmentations_file)
+    segmentations = json.load(open(segmentations_path, 'r', encoding='utf-8'))
+    
     test_keys = []
     for split in splits:
         test_key = split['test_keys']
@@ -111,13 +121,18 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
     f_measures = {}
     
     for test_key in test_keys:
-        filename = str(np.array(groundtruth[test_key + '/video_name']).astype(str))
+        filename = np.array(groundtruth[test_key +
+                                        '/video_name']).astype(str).item()
         user_summary = np.array(groundtruth[test_key + '/user_summary']).T
         
-        scores_path = os.path.join(summary_folder,
-                                   filename + '_scores.npy')
-        keyframes_path = os.path.join(summary_folder,
-                                      filename + '_keyframes.npy')
+        scores_file = filename + '_scores.npy'
+        keyframes_file = filename + '_keyframes.npy'
+        
+        scores_path = os.path.join(summary_folder, scores_file)
+        keyframes_path = os.path.join(summary_folder, keyframes_file)
+        
+        segmentation_info = segmentations[test_key]
+        segmentation = segmentation_info['segments']
         
         if os.path.exists(scores_path):
             scores = np.load(scores_path)
@@ -126,8 +141,10 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
             eval_results = evaluateSummary(scores=scores,
                                            user_summary=user_summary,
                                            keyframe_indices=keyframe_indices,
+                                           segmentation=segmentation,
                                            coef=coef,
-                                           mode='frame',
+                                           mode=mode,
+                                           fill_mode=fill_mode,
                                            expand=expand
                                            )
             
@@ -238,11 +255,18 @@ def evaluate():
                         help='Path to the folder containing the result of evaluation')
     
     parser.add_argument('--mode', type=str, default='frame',
+                        choices=['frame', 'fragment', 'shot'],
                         help='Evaluation mode: "frame" or "fragment"')
     parser.add_argument('--coef', type=float, default=2.0,
-                        help='Coefficient for taking more frames')
-    parser.add_argument('--expand', type=int, default=0,
-                        help='Expand around keyframes')
+                        help='Coefficient for taking more frames'
+                        + ', 0 to get all keyframes')
+    parser.add_argument('--expand', type=float, default=0,
+                        help='Int >= 1: Expand around keyframes; '
+                        + '0 < Float < 1: Default percentage of selection')
+    parser.add_argument('--fill-mode', type=str, default='linear',
+                        choices=['linear', 'nearest', 'nearest-up'],
+                        help='Mode for filling in missing frames: '
+                        + '"linear", "nearest", or "nearest-up"')
     
     args = parser.parse_args()
     
@@ -259,6 +283,8 @@ def evaluate():
                       summary_folder=args.summary_folder,
                       result_folder=args.result_folder,
                       coef=args.coef,
+                      mode=args.mode,
+                      fill_mode=args.fill_mode,
                       expand=args.expand
                       )
 
