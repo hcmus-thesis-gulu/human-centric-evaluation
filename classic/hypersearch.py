@@ -84,7 +84,7 @@ def search():
                     
                     search_result = {
                         'coef': float(coef),
-                        'expand': int(expand),
+                        'expand': float(expand),
                         'fill-mode': fill_mode,
                         'max-f': float(score[0]),
                         'avg-f': float(score[1]),
@@ -118,7 +118,7 @@ def search():
             
                 search_result = {
                     'coef': float(coef),
-                    'expand': int(expand),
+                    'expand': float(expand),
                     'max-f': float(score[0]),
                     'avg-f': float(score[1]),
                     'top-5': float(score[2]),
