@@ -125,6 +125,8 @@ def evaluateSummary(scores, user_summary, keyframe_indices, segmentation,
             fp = len(np.unique(user_summary[machine_selected, user])) - tp
             fn = len(np.unique(user_summary[user_selected, user])) - tp
         elif mode == 'shot':
+            length = len(user_selected)
+            
             machine_summary = calculateSummary(scores=scores,
                                                segments=segments,
                                                length=coef*length,

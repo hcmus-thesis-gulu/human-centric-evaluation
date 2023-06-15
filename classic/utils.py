@@ -60,6 +60,7 @@ def generate_summary(segments, scores, fill_mode,
     # Compute the importance scores for the initial frame sequence (not the sub-sampled one)
     scorer = interpolate.interp1d(positions, frame_init_scores,
                                   kind=fill_mode,
+                                  bounds_error=False,
                                   fill_value=(frame_init_scores[0],
                                               frame_init_scores[-1])
                                   )
