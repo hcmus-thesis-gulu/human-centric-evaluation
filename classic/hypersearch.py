@@ -13,7 +13,7 @@ def print_result(coef, expand, fill_mode, score, idx=None):
         
     result = f"avg-f={score[1]:.4f}, top-5={score[2]:.4f}"
     if score[0] is not None:
-        result += f", avg-p={score[0]:.4f}"
+        result += f", max-f={score[0]:.4f}"
     
     if idx is None:
         print("========================================")
@@ -51,7 +51,7 @@ def search():
     parser.add_argument('--iter-coef', type=float, default=0.5)
     
     parser.add_argument('--min-expand', type=float,
-                        help='Int > 1: Minimum number of frames to expand'
+                        help='Int: Minimum number of frames to expand'
                         + '0 < Float < 1: Minimum percentage of selection')
     parser.add_argument('--max-expand', type=float,
                         help='Int > 1: Maximum number of frames to expand'
@@ -125,7 +125,7 @@ def search():
                 search_results.append(search_result)
             
     # Sort by score
-    sorted_results = sorted(search_results, key=lambda x: x['top-5'],
+    sorted_results = sorted(search_results, key=lambda x: x['max-f'],
                             reverse=True)
     for i, sorted_result in enumerate(sorted_results[:10]):
         score = [sorted_result['max-f'], sorted_result['avg-f'],
