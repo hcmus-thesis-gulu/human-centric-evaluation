@@ -6,6 +6,25 @@ import numpy as np
 from evaluation import evaluateSummaries, testSummaries
 
 
+def print_result(coef, expand, fill_mode, score, idx=None):
+    param = f"coef={coef:.2f}, expand={expand}"
+    if fill_mode is not None:
+        param += f", fill_mode={fill_mode}"
+        
+    result = f"avg-f={score[1]:.4f}, top-5={score[2]:.4f}"
+    if score[0] is not None:
+        result += f", avg-p={score[0]:.4f}"
+    
+    if idx is None:
+        print("========================================")
+        print(f"Parameter: {param}")
+        print(f"Result: {result}")
+        print("========================================")
+    else:
+        display = f"{idx+1}. {param}; {result}"
+        print(display)
+    
+
 def search():
     parser = argparse.ArgumentParser(description='Evaluate machine learning algorithm summaries.')
     
@@ -24,7 +43,7 @@ def search():
                         help='Path to the folder containing the result of evaluation')
     
     parser.add_argument('--mode', type=str, default='frame',
-                        chocies=['frame', 'fragment', 'shot'],
+                        choices=['frame', 'fragment', 'shot'],
                         help='Evaluation mode: "frame", "fragment" or "shot"')
     
     parser.add_argument('--min-coef', type=float, default=1.0)
@@ -43,7 +62,7 @@ def search():
     args = parser.parse_args()
     
     fill_modes = ['linear', 'nearest', 'nearest-up']
-    search_resuls = []
+    search_results = []
     
     for coef in np.arange(args.min_coef,
                           args.max_coef + (args.iter_coef / 2),
@@ -70,10 +89,9 @@ def search():
                         'avg-f': float(score[1]),
                         'top-5': float(score[2]),
                     }
-                    search_resuls.append(search_result)
+                    search_results.append(search_result)
                     
-                    print(f"coef={coef:.2f}, expand={expand}, fill-mode={fill_mode}; ")
-                    print(f"avg-f={score[1]:.4f}, top-5={score[2]:.4f}, max-f={score[0]:.4f}")
+                    print_result(coef, expand, fill_mode, score)
             else:
                 if args.original:
                     score = evaluateSummaries(groundtruth_folder=args.groundtruth_folder,
@@ -84,8 +102,7 @@ def search():
                                               expand=expand
                                               )
                     
-                    print(f"coef={coef:.2f}, expand={expand}; ")
-                    print(f"avg-f={score[1]:.4f}, top-5={score[2]:.4f}")
+                    print_result(coef, expand, None, score)
                 elif args.mode == 'frame':
                     score = testSummaries(groundtruth_folder=args.groundtruth_folder,
                                           summary_folder=args.summary_folder,
@@ -96,8 +113,7 @@ def search():
                                           expand=expand
                                           )
                     
-                    print(f"coef={coef:.2f}, expand={expand}; ")
-                    print(f"avg-f={score[1]:.4f}, top-5={score[2]:.4f}, max-f={score[0]:.4f}")
+                    print_result(coef, expand, None, score)
             
                 search_result = {
                     'coef': float(coef),
@@ -106,28 +122,26 @@ def search():
                     'avg-f': float(score[1]),
                     'top-5': float(score[2]),
                 }
-                search_resuls.append(search_result)
+                search_results.append(search_result)
             
     # Sort by score
-    sorted_result = sorted(search_resuls, key=lambda x: x['top-5'],
-                           reverse=True)
-    for i, result in enumerate(sorted_result[:10]):
-        param = f"coef={result['coef']:.2f}, expand={result['expand']}"
-        if args.mode == 'shot':
-            param += f", fill-mode={result['fill-mode']}"
-            
-        result = f"avg-f={result['avg-f']:.4f}, top-5={result['top-5']:.4f}"
-        if result['max-f'] is not None:
-            result += f", max-f={result['max-f']:.4f}"
+    sorted_results = sorted(search_results, key=lambda x: x['top-5'],
+                            reverse=True)
+    for i, sorted_result in enumerate(sorted_results[:10]):
+        score = [sorted_result['max-f'], sorted_result['avg-f'],
+                 sorted_result['top-5']]
         
-        display = f"{i+1}. {param}; {result}"
-        print(display)
+        print_result(coef=sorted_result['coef'],
+                     expand=sorted_result['expand'],
+                     fill_mode=sorted_result.get('fill-mode', None),
+                     score=score,
+                     idx=i)
     
     result_name = 'original' if args.original else 'test'
     result_path = args.result_folder + f'/{result_name}_results.json'
     
     with open(result_path, 'w', encoding='utf-8') as result_file:
-        json.dump(search_resuls, result_file)
+        json.dump(search_results, result_file)
 
 
 if __name__ == '__main__':
