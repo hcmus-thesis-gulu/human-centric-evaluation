@@ -137,7 +137,8 @@ def search():
                      score=score,
                      idx=i)
     
-    result_name = 'original' if args.original else 'test'
+    result_type = 'original' if args.original else 'test'
+    result_name = f'{result_type}_{args.mode}'
     result_path = args.result_folder + f'/{result_name}_results.json'
     
     with open(result_path, 'w', encoding='utf-8') as result_file:
