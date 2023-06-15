@@ -93,7 +93,7 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
         with open(json_file, 'w', encoding='utf-8') as file:
             json.dump(results, file)
         
-    return f_measure, top_5_avg
+    return None, f_measure, top_5_avg
 
 
 def testSummaries(groundtruth_folder, summary_folder, result_folder,
@@ -238,7 +238,7 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
         with open(json_file, 'w', encoding='utf-8') as file:
             json.dump(results, file)
         
-    return max_f_measure, top_5_avg
+    return max_f_measure, avg_f_measure, top_5_avg
 
 
 def evaluate():
