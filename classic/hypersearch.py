@@ -46,10 +46,10 @@ def search():
     search_resuls = []
     
     for coef in np.arange(args.min_coef,
-                          args.max_coef + args.iter_coef,
+                          args.max_coef + (args.iter_coef / 2),
                           args.iter_coef):
         for expand in np.arange(args.min_expand,
-                                args.max_expand + args.iter_expand,
+                                args.max_expand + (args.iter_expand / 2),
                                 args.iter_expand):
             if args.mode == 'shot':
                 for fill_mode in fill_modes:
@@ -71,6 +71,9 @@ def search():
                         'top-5': float(score[2]),
                     }
                     search_resuls.append(search_result)
+                    
+                    print(f"coef={coef:.2f}, expand={expand}, fill-mode={fill_mode}; ")
+                    print(f"avg-f={score[1]:.4f}, top-5={score[2]:.4f}, max-f={score[0]:.4f}")
             else:
                 if args.original:
                     score = evaluateSummaries(groundtruth_folder=args.groundtruth_folder,
@@ -80,6 +83,9 @@ def search():
                                               mode=args.mode,
                                               expand=expand
                                               )
+                    
+                    print(f"coef={coef:.2f}, expand={expand}; ")
+                    print(f"avg-f={score[1]:.4f}, top-5={score[2]:.4f}")
                 elif args.mode == 'frame':
                     score = testSummaries(groundtruth_folder=args.groundtruth_folder,
                                           summary_folder=args.summary_folder,
@@ -89,6 +95,9 @@ def search():
                                           fill_mode=None,
                                           expand=expand
                                           )
+                    
+                    print(f"coef={coef:.2f}, expand={expand}; ")
+                    print(f"avg-f={score[1]:.4f}, top-5={score[2]:.4f}, max-f={score[0]:.4f}")
             
                 search_result = {
                     'coef': float(coef),
