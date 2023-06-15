@@ -196,6 +196,7 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
         print(f"Top 5 average F-measure: {top_5_avg:.4f}")
         
         max_f_measure = 0
+        avg_f_measure = 0
         
         # Split-wise results
         for idx, split in enumerate(splits):
@@ -226,8 +227,11 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
                       + f"{split_mean_sum_rate:.4f} ± {split_std_sum_rate:.4f}")
                 
                 max_f_measure = max(max_f_measure, split_f_measure)
-        
-    print(f'Maximum F-measure: {max_f_measure:.4f}')
+                avg_f_measure += split_f_measure
+
+        avg_f_measure /= len(splits)
+        print(f'Maximum F-measure: {max_f_measure:.4f}')
+        print(f'Average F-measure: {avg_f_measure:.4f}')
     
     if result_folder is not None:
         json_file = os.path.join(result_folder, 'results.json')
