@@ -2,16 +2,34 @@ import cv2 as cv
 from tqdm import tqdm
 
 
+def count_frames(video_path):
+    # Extract features for each frame of the video
+    video = cv.VideoCapture(video_path)
+    # Get the video's frame rate, total frames
+    fps = int(video.get(cv.CAP_PROP_FPS))
+    
+    count = 0
+    while True:
+        ret, _ = video.read()
+        if not ret:
+            break
+        count += 1
+    
+    video.release()
+    return fps, count
+    
+
 def broadcast_video(input_video_path, frame_indices,
                     output_video_path, max_length,
                     sum_rate, fps=None):
     raw_video = cv.VideoCapture(input_video_path)
     width = int(raw_video.get(cv.CAP_PROP_FRAME_WIDTH))
     height = int(raw_video.get(cv.CAP_PROP_FRAME_HEIGHT))
-    video_length = int(raw_video.get(cv.CAP_PROP_FRAME_COUNT))
+    
+    computed_fps, video_length = count_frames(input_video_path)
   
     if fps is None:
-        fps = int(raw_video.get(cv.CAP_PROP_FPS))
+        fps = computed_fps
     
     # Maximum nunmber of frames in the summary
     frames_length = int(max_length * fps)
