@@ -57,7 +57,7 @@ def main():
     args = parser.parse_args()
     
     materialize_videos(video_folder=args.video_folder,
-                       summary_folder=args.context_folder,
+                       summary_folder=args.summary_folder,
                        demo_folder=args.demo_folder,
                        max_length=args.max_length,
                        sum_rate=args.sum_rate,
