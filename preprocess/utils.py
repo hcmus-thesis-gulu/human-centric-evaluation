@@ -46,6 +46,9 @@ def broadcast_video(input_video_path, frame_indices,
     # Fragment width of the computed fragment length
     fragment_width = (fragment_length - 1) // 2
     
+    print(f'Frames in the summary: {summary_length}')
+    print(f'Width of fragments: {fragment_width}')
+    
     fourcc = cv.VideoWriter_fourcc(*'MJPG')
     video = cv.VideoWriter(output_video_path, fourcc,
                            float(fps), (width, height))

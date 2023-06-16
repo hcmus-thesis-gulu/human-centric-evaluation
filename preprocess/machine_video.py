@@ -1,7 +1,6 @@
 import os
 import argparse
 import numpy as np
-from tqdm import tqdm
 
 from preprocess.utils import broadcast_video
 
@@ -43,8 +42,9 @@ def materialize_videos(video_folder, embedding_folder, context_folder,
                        demo_folder, max_length, sum_rate, fps=None):
     video_files = os.listdir(video_folder)
     
-    for video_file in tqdm(video_files):
+    for video_file in video_files:
         video_name = video_file.split('.')[0]
+        print(f'Processing {video_name}')
         
         materialize_video(video_folder=video_folder,
                           embedding_folder=embedding_folder,
