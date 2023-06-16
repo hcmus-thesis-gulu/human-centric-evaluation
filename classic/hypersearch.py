@@ -118,7 +118,7 @@ def search():
             
                 search_result = {
                     'coef': float(coef),
-                    'expand': float(expand),
+                    'expand': float(expand) if expand is not None else None,
                     'max-f': float(score[0]),
                     'avg-f': float(score[1]),
                     'top-5': float(score[2]),
