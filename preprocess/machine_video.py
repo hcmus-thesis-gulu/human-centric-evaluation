@@ -1,13 +1,14 @@
 import os
 import argparse
 import numpy as np
+from tqdm import tqdm
 
 from preprocess.utils import broadcast_video
 
 
-def visualize_video(video_folder, embedding_folder, context_folder,
-                    demo_folder, video_name, max_length, sum_rate,
-                    fps=None):
+def materialize_video(video_folder, embedding_folder, context_folder,
+                      demo_folder, video_name, max_length, sum_rate,
+                      fps=None):
     sample_file = os.path.join(embedding_folder, f'{video_name}_samples.npy')
     keyframe_file = os.path.join(context_folder, f'{video_name}_keyframes.npy')
     
@@ -36,6 +37,23 @@ def visualize_video(video_folder, embedding_folder, context_folder,
     except Exception as error:
         print(error)
         print(f'{video_name} not found')
+        
+
+def materialize_videos(video_folder, embedding_folder, context_folder,
+                       demo_folder, max_length, sum_rate, fps=None):
+    video_files = os.listdir(video_folder)
+    
+    for video_file in tqdm(video_files):
+        video_name = video_file.split('.')[0]
+        
+        materialize_video(video_folder=video_folder,
+                          embedding_folder=embedding_folder,
+                          context_folder=context_folder,
+                          demo_folder=demo_folder,
+                          video_name=video_name,
+                          max_length=max_length,
+                          sum_rate=sum_rate,
+                          fps=fps)
 
 
 def main():
@@ -48,7 +66,6 @@ def main():
                         help='path to output folder for clustering')
     parser.add_argument('--demo-folder', type=str, required=True,
                         help='path to folder saving demo videos')
-    parser.add_argument('--video-name', type=str, help='video name')
     
     parser.add_argument('--output-fps', type=int, help='video fps')
     parser.add_argument('--max-length', type=int, default=30,
@@ -58,7 +75,7 @@ def main():
 
     args = parser.parse_args()
     
-    visualize_video(video_folder=args.video_folder,
+    materialize_video(video_folder=args.video_folder,
                     embedding_folder=args.embedding_folder,
                     context_folder=args.context_folder,
                     demo_folder=args.demo_folder,
