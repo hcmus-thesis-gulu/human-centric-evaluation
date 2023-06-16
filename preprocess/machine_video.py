@@ -6,7 +6,7 @@ from preprocess.utils import broadcast_video
 
 
 def visualize_video(video_folder, embedding_folder, context_folder,
-                    demo_folder, video_name, frag_width, fps=None):
+                    demo_folder, video_name, vid_length, fps=None):
     sample_file = os.path.join(embedding_folder, f'{video_name}_samples.npy')
     keyframe_file = os.path.join(context_folder, f'{video_name}_keyframes.npy')
     
@@ -18,14 +18,14 @@ def visualize_video(video_folder, embedding_folder, context_folder,
         samples = np.load(sample_file)
         broadcast_video(input_video_path=raw_video_path, frame_indices=samples,
                         output_video_path=sample_video_path,
-                        fragment_width=frag_width, fps=fps
+                        fragment_width=vid_length, fps=fps
                         )
         
         keyframes = np.load(keyframe_file)
         broadcast_video(input_video_path=raw_video_path,
                         frame_indices=keyframes,
                         output_video_path=keyframe_video_path,
-                        fps=fps, fragment_width=frag_width
+                        fps=fps, fragment_width=vid_length
                         )
     except Exception as error:
         print(error)
@@ -45,8 +45,8 @@ def main():
     parser.add_argument('--video-name', type=str, help='video name')
     
     parser.add_argument('--output-fps', type=int, help='video fps')
-    parser.add_argument('--frag-width', type=int, default=10,
-                        help='width of key fragment around the keyframes')
+    parser.add_argument('--video-length', type=int, default=10,
+                        help='length of output video (in seconds)')
 
     args = parser.parse_args()
     
@@ -55,7 +55,7 @@ def main():
                     context_folder=args.context_folder,
                     demo_folder=args.demo_folder,
                     video_name=args.video_name,
-                    frag_width=args.frag_width,
+                    vid_length=args.video_length,
                     fps=args.output_fps)
 
 

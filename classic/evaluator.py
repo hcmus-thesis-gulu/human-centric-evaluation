@@ -6,13 +6,12 @@ from classic.utils import generate_summary
 def calculateSummary(scores, segments, length, video_length,
                      fill_mode, expand):
     length = int(length)
-    
-    if length > 0:
-        percentile = length / video_length
-    else:
-        percentile = float(expand)
+    key_length = length if length > 0 else int(video_length * expand)
         
-    return generate_summary(segments, scores, fill_mode, percentile)
+    return generate_summary(segments=segments,
+                            scores=scores,
+                            fill_mode=fill_mode,
+                            key_length=key_length)
 
 
 def computeSummary(scores, keyframe_indices, length, video_length, expand):

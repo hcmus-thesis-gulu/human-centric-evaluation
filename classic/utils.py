@@ -34,8 +34,7 @@ def knapsack(W, wt, val, n):
     return selected
 
 
-def generate_summary(segments, scores, fill_mode,
-                     select_percentile=0.15):
+def generate_summary(segments, scores, fill_mode, key_length=0.15):
     """ Generate the automatic machine summary, based on the video shots; the frame importance scores; the number of
     frames in the original video and the position of the sub-sampled frames of the original video.
 
@@ -76,9 +75,9 @@ def generate_summary(segments, scores, fill_mode,
 
     # Select the best shots using the knapsack implementation
     final_shot = shot_bound[-1]
-    final_max_length = int((final_shot[1] + 1) * select_percentile)
+    # final_max_length = int((final_shot[1] + 1) * key_length)
 
-    selected = knapsack(final_max_length, shot_lengths,
+    selected = knapsack(key_length, shot_lengths,
                         shot_imp_scores, len(shot_lengths))
 
     # Select all frames from each selected shot (by setting their value in the summary vector to 1)
