@@ -3,14 +3,30 @@ from tqdm import tqdm
 
 
 def broadcast_video(input_video_path, frame_indices,
-                    output_video_path, fragment_width,
-                    fps=None):
+                    output_video_path, max_length,
+                    sum_rate, fps=None):
     raw_video = cv.VideoCapture(input_video_path)
     width = int(raw_video.get(cv.CAP_PROP_FRAME_WIDTH))
     height = int(raw_video.get(cv.CAP_PROP_FRAME_HEIGHT))
+    video_length = int(raw_video.get(cv.CAP_PROP_FRAME_COUNT))
   
-    if fps == None:
+    if fps is None:
         fps = int(raw_video.get(cv.CAP_PROP_FPS))
+    
+    # Maximum nunmber of frames in the summary
+    frames_length = int(max_length * fps)
+    
+    # Estimated number of frames in the summary
+    estimated_length = int(video_length * sum_rate)
+    
+    # Final number of frames of the summary
+    summary_length = min(frames_length, estimated_length)
+    
+    # Length of the fragment around each keyframe
+    fragment_length = summary_length // len(frame_indices)
+    
+    # Fragment width of the computed fragment length
+    fragment_width = (fragment_length - 1) // 2
     
     fourcc = cv.VideoWriter_fourcc(*'MJPG')
     video = cv.VideoWriter(output_video_path, fourcc,

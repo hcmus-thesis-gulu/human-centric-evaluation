@@ -6,7 +6,8 @@ from preprocess.utils import broadcast_video
 
 
 def visualize_video(video_folder, embedding_folder, context_folder,
-                    demo_folder, video_name, vid_length, fps=None):
+                    demo_folder, video_name, max_length, sum_rate,
+                    fps=None):
     sample_file = os.path.join(embedding_folder, f'{video_name}_samples.npy')
     keyframe_file = os.path.join(context_folder, f'{video_name}_keyframes.npy')
     
@@ -16,16 +17,21 @@ def visualize_video(video_folder, embedding_folder, context_folder,
     
     try:
         samples = np.load(sample_file)
-        broadcast_video(input_video_path=raw_video_path, frame_indices=samples,
+        broadcast_video(input_video_path=raw_video_path,
+                        frame_indices=samples,
                         output_video_path=sample_video_path,
-                        fragment_width=vid_length, fps=fps
+                        max_length=max_length,
+                        sum_rate=sum_rate,
+                        fps=fps
                         )
         
         keyframes = np.load(keyframe_file)
         broadcast_video(input_video_path=raw_video_path,
                         frame_indices=keyframes,
                         output_video_path=keyframe_video_path,
-                        fps=fps, fragment_width=vid_length
+                        max_length=max_length,
+                        sum_rate=sum_rate,
+                        fps=fps
                         )
     except Exception as error:
         print(error)
@@ -45,8 +51,10 @@ def main():
     parser.add_argument('--video-name', type=str, help='video name')
     
     parser.add_argument('--output-fps', type=int, help='video fps')
-    parser.add_argument('--video-length', type=int, default=10,
-                        help='length of output video (in seconds)')
+    parser.add_argument('--max-length', type=int, default=30,
+                        help='maximum length of output video (in seconds)')
+    parser.add_argument('--sum-rate', type=float, default=0.15,
+                        help='rate of summary video (0 < rate < 1)')
 
     args = parser.parse_args()
     
@@ -55,7 +63,8 @@ def main():
                     context_folder=args.context_folder,
                     demo_folder=args.demo_folder,
                     video_name=args.video_name,
-                    vid_length=args.video_length,
+                    max_length=args.max_length,
+                    sum_rate=args.sum_rate,
                     fps=args.output_fps)
 
 
