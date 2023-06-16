@@ -126,8 +126,10 @@ def search():
                 search_results.append(search_result)
             
     # Sort by score
-    sorted_results = sorted(search_results, key=lambda x: x['max-f'],
+    cmp_field = 'avg-f' if args.original else 'max-f'
+    sorted_results = sorted(search_results, key=lambda val: val[cmp_field],
                             reverse=True)
+    
     for i, sorted_result in enumerate(sorted_results[:10]):
         score = [sorted_result['max-f'], sorted_result['avg-f'],
                  sorted_result['top-5']]
