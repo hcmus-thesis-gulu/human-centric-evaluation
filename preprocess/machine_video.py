@@ -76,13 +76,12 @@ def main():
     args = parser.parse_args()
     
     materialize_video(video_folder=args.video_folder,
-                    embedding_folder=args.embedding_folder,
-                    context_folder=args.context_folder,
-                    demo_folder=args.demo_folder,
-                    video_name=args.video_name,
-                    max_length=args.max_length,
-                    sum_rate=args.sum_rate,
-                    fps=args.output_fps)
+                      embedding_folder=args.embedding_folder,
+                      context_folder=args.context_folder,
+                      demo_folder=args.demo_folder,
+                      max_length=args.max_length,
+                      sum_rate=args.sum_rate,
+                      fps=args.output_fps)
 
 
 if __name__ == '__main__':
