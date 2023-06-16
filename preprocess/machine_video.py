@@ -27,16 +27,17 @@ def materialize_videos(video_folder, summary_folder, demo_folder, max_length,
     video_files = os.listdir(video_folder)
     
     for video_file in video_files:
-        video_name = video_file.split('.')[0]
-        print(f'Processing {video_name}')
-        
-        materialize_video(video_folder=video_folder,
-                          summary_folder=summary_folder,
-                          demo_folder=demo_folder,
-                          video_name=video_name,
-                          max_length=max_length,
-                          sum_rate=sum_rate,
-                          fps=fps)
+        if video_file.endswith('.mp4'):
+            video_name = video_file.split('.')[0]
+            print(f'Processing {video_name}')
+            
+            materialize_video(video_folder=video_folder,
+                              summary_folder=summary_folder,
+                              demo_folder=demo_folder,
+                              video_name=video_name,
+                              max_length=max_length,
+                              sum_rate=sum_rate,
+                              fps=fps)
 
 
 def main():
