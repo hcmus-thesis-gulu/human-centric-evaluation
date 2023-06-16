@@ -31,6 +31,8 @@ def broadcast_video(input_video_path, frame_indices,
     if fps is None:
         fps = computed_fps
     
+    print(f'FPS: {fps}')
+    
     # Maximum nunmber of frames in the summary
     frames_length = int(max_length * fps)
     
