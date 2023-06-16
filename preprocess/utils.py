@@ -38,15 +38,16 @@ def broadcast_video(input_video_path, frame_indices,
     estimated_length = int(video_length * sum_rate)
     
     # Final number of frames of the summary
-    summary_length = min(frames_length, estimated_length)
+    summary_length = max(min(frames_length, estimated_length),
+                         len(frame_indices))
+    print(f'Frames in the summary: {summary_length}')
     
     # Length of the fragment around each keyframe
     fragment_length = summary_length // len(frame_indices)
+    print(f'Length of the fragment: {fragment_length}')
     
     # Fragment width of the computed fragment length
-    fragment_width = (fragment_length - 1) // 2
-    
-    print(f'Frames in the summary: {summary_length}')
+    fragment_width = max(0, (fragment_length - 1) // 2)
     print(f'Width of fragments: {fragment_width}')
     
     fourcc = cv.VideoWriter_fourcc(*'MJPG')
