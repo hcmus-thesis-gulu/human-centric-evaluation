@@ -34,14 +34,14 @@ def knapsack(W, wt, val, n):
     return selected
 
 
-def generate_summary(segments, scores, fill_mode, key_length=0.15):
+def generate_summary(segments, scores, fill_mode, key_length):
     """ Generate the automatic machine summary, based on the video shots; the frame importance scores; the number of
     frames in the original video and the position of the sub-sampled frames of the original video.
 
-    :param np.ndarray segmentation: The boundaries and number of frames of the shots for the -original- testing video.
-    :param np.ndarray all_scores: The indices of sub-sampled frames in the original video together with its predicted importances.
+    :param np.ndarray segmentations: The boundaries and number of frames of the shots for the -original- testing video.
+    :param np.ndarray scores: The indices of sub-sampled frames in the original video together with its predicted importances.
     :param str fill_mode: The method to use for filling the missing frames in the original video.
-    :param float select_percentile: The percentage of the frames to select from the last shot.
+    :param float key_length: The number of frames to be selected for the summary.
     :return: A list containing the indices of the selected frames for the -original- testing video.
     """
     
