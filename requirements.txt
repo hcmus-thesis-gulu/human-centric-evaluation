@@ -28,6 +28,8 @@ pyrsistent==0.19.3
 python-dateutil==2.8.2
 pytz==2023.3
 pytz-deprecation-shim==0.1.0.post0
+pywebio==1.8.2
+pywebio-battery==0.5.0
 requests==2.31.0
 rich==13.4.1
 six==1.16.0
@@ -40,8 +42,8 @@ tornado==6.3.2
 typing_extensions==4.6.3
 tzdata==2023.3
 tzlocal==4.3
+ua-parser==0.16.1
 urllib3==2.0.2
+user-agents==2.2.0
 validators==0.20.0
 zipp==3.15.0
-scipy
-h5py

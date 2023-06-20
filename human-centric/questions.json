@@ -6,10 +6,6 @@
 				"type": "multiple",
 				"question": "Is the plane taking off or landing?",
 				"options": ["taking off", "landing"]
-			},
-			{
-				"type": "short",
-				"question": "What is the main color of the plane?"
 			}
 		]
 	},
