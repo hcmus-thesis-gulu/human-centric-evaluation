@@ -1,6 +1,6 @@
 import os
 
-distance = "cosine"
+distance = "euclidean"
 # embedding_dim = 2
 
 groundtruth_folder = "classic/data"
