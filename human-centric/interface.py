@@ -1,8 +1,8 @@
 import os
 import cv2
 
-src = 'videos/original'
-dst = 'videos/original'
+src = 'videos/user-summaries'
+dst = 'videos/user-summaries'
 
 def convert_to_mp4(input_file, output_file):
     video = cv2.VideoCapture(input_file)
@@ -38,12 +38,49 @@ def convert_to_mp4(input_file, output_file):
    
     print("The video was successfully saved")
 
+from converter import Converter
+
+def convert_to_webm(input_path, output_path):
+    video = cv2.VideoCapture(input_path)
+    if (video.isOpened() == False): 
+        print("Error reading video file")
+
+    frame_width = int(video.get(3))
+    frame_height = int(video.get(4))
+    fps = video.get(cv2.CAP_PROP_FPS)
+
+    video.release()
+    
+    conv = Converter()
+    info = conv.probe(input_path)
+    convert = conv.convert(input_path, output_path, {
+        'format': 'webm',
+        'audio': {
+            'codec': 'vorbis',
+            'samplerate': 11025,
+            'channels': 2
+        },
+        'video': {
+            'codec': 'vp9',
+            'width': frame_width,
+            'height': frame_height,
+            'fps': fps
+        }
+    })
+    print(convert)
+    for timecode in convert:
+        print(f'\\rConverting ({timecode:.2f}) ...')
+    
+
 for filename in os.listdir(src):
     filename = filename.split(".")[0] + ".{ext}"
-    input = os.path.join(src, filename.format(ext='webm'))
-    output = os.path.join(dst, filename.format(ext='mp4'))
-    convert_to_mp4(input, output)
-    print(output)
+    
+    input = os.path.join(src, filename.format(ext='mp4'))
+    os.system()
+    # output = os.path.join(dst, filename.format(ext='webm'))
+    # convert_to_mp4(input, output)
+    # print(output)
+    # convert_to_webm(input, output)
 
 # import streamlit as st
 # import json

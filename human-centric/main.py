@@ -1,50 +1,7 @@
-# import os
-# import cv2
-
-# src = 'videos/user-summaries'
-# dst = 'videos/user-summaries'
-
-# def convert_to_mp4(input_file, output_file):
-#     video = cv2.VideoCapture(input_file)
-#     if (video.isOpened() == False): 
-#         print("Error reading video file")
-
-#     frame_width = int(video.get(3))
-#     frame_height = int(video.get(4))
-   
-#     size = (frame_width, frame_height)
-#     fps = video.get(cv2.CAP_PROP_FPS)
-   
-#     result = cv2.VideoWriter(output_file, 
-#                          cv2.VideoWriter_fourcc(*'MP4V'),
-#                          fps, size)
-    
-#     while(True):
-#         ret, frame = video.read()
-    
-#         if ret == True: 
-#             result.write(frame)
-    
-#         else:
-#             break
-  
-#     video.release()
-#     result.release()
-    
-#     cv2.destroyAllWindows()
-   
-#     print("The video was successfully saved")
-
-# for filename in os.listdir(src):
-#     filename = filename.split(".")[0] + ".{ext}"
-#     input = os.path.join(src, filename.format(ext='avi'))
-#     output = os.path.join(dst, filename.format(ext='mp4'))
-#     convert_to_mp4(input, output)
-#     print(output)
-
 import json
-from pywebio import input
-from pywebio import output
+import os
+import cv2
+from pywebio import input, output, start_server
 import pywebio_battery
 import json
 import random
@@ -54,9 +11,9 @@ common_json = "human-centric/common-questions.json"
 comparison_json = "human-centric/comparison-questions.json"
 questions_json = "human-centric/questions.json"
 survey_info_json = "human-centric/survey-information.json"
-original_path = "videos/original/{name}.mp4"
-user_path = "videos/user-summaries/{name}_{user_idx}.mp4"
-our_path = "videos/user-summaries/{name}_1.mp4"
+original_path = "videos/original/{name}.webm"
+user_path = "videos/user-summaries/{name}_{user_idx}.webm"
+our_path = "videos/user-summaries/{name}_1.webm"
 answers_path = "human-centric/answers/{uuid}.json"
 
 def short_answer_question(question):
@@ -92,17 +49,14 @@ def ask_question(question):
             return linear_scale_question(question['question'])
         
 def broadcast_video(video_path):
-    with open(video_path, "rb") as f:
-        video_bytes = f.read()
-    pywebio_battery.put_video(video_path)
-    print(video_path)
+    frame_width = "320"
+    frame_height = "180"
     
-    # url = "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-    # pywebio_battery.put_video(url)
+    video_path = os.path.join("static", video_path)
+    pywebio_battery.put_video(video_path, width=frame_width, height=frame_height)
 
 def present_comparison(video_infor, comparison_questions):
     output.put_markdown("### Original Video")
-    print(video_infor)
     broadcast_video(original_path.format(name=video_infor['name']))
     output.put_markdown("### Summary Video")    
     user_idx = random.randint(0, 15)
@@ -111,10 +65,16 @@ def present_comparison(video_infor, comparison_questions):
     else:
         broadcast_video(our_path.format(name=video_infor['name']))
         
-    answers = []
+    results = []
     for question in comparison_questions:
-        answers.append(ask_question(question))
-    return answers
+        answer = ask_question(question)
+        result_obj = {
+            "question": question,
+            "user_index": user_idx,
+            "answer": answer
+        }
+        results.append(result_obj)
+    return results
     
 def present_normal(video_infor, common_questions):
     user_idx = random.randint(-1, 15)
@@ -126,20 +86,25 @@ def present_normal(video_infor, common_questions):
         case _:
             broadcast_video(user_path.format(name=video_infor['name'], user_idx=user_idx))
             
-    answers = []
+    results = []
     for question in common_questions:
-        answers.append(ask_question(question))
+        answer = ask_question(question)
+        result_obj = {
+            "question": question,
+            "answer": answer
+        }
+        results.append(result_obj)
     for question in video_infor['questions']:
-        answers.append(ask_question(question))
+        answer = ask_question(question)
+        result_obj = {
+            "question": question,
+            "answer": answer
+        }
+        results.append(result_obj)
         
-    return answers
+    return results
 
 def survey():
-# # original_path = "videos/original/{name}.webm"
-# # user_path = "videos/user-summaries/{name}_{user_idx}.avi"
-# # our_path = "videos/user-summaries/{name}_1.avi"
-# # answers_folder = "human-centric/answers"
-
     with open(common_json, "r") as f:
         common_questions = json.load(f)
     with open(comparison_json, "r") as f:
@@ -149,7 +114,7 @@ def survey():
     with open(survey_info_json, "r") as f:
         survey_infor = json.load(f)
     survey_uuid = uuid4().hex
-    survey_answers = []
+    survey_results = []
     
     output.put_markdown("# {title}".format(title=survey_infor["title"]))
     output.put_text(survey_infor["description"])
@@ -159,42 +124,22 @@ def survey():
         videos_to_ask = random.sample(video_infos, number_of_videos)
         for idx, video_infor in enumerate(videos_to_ask, start=1):
             output.put_markdown("## Video #{idx}".format(idx=idx))
-            compare_or_normal = 0
-            # random.randint(0, 1)
+            compare_or_normal = random.randint(0, 1)
             if compare_or_normal:
-                answers = present_comparison(video_infor, comparison_questions)
+                results = present_comparison(video_infor, comparison_questions)
             else:
-                answers = present_normal(video_infor, common_questions)
-            survey_answers.append(answers)
+                results = present_normal(video_infor, common_questions)
+                
+            result_obj = {
+                "name": video_infor["name"],
+                "survey_results": results
+            }
+            survey_results.append(result_obj)
+
+    result_path = answers_path.format(uuid=survey_uuid)
+    with open(result_path, "w") as f:
+        json.dump(survey_results, f, indent=4)
+        
         
 if __name__ == '__main__':
-    survey()
-
-
-
-
-# def main():
-
-
-
-        
-    
-#     if input.button("Start the Survey"):
-#         videos_to_ask = random.sample(video_infos, number_of_videos)
-#         for idx, video_infor in enumerate(videos_to_ask, start=1):
-#             input.header("Video #{idx}".format(idx=idx))
-#             compare_or_normal = 0
-#             # random.randint(0, 1)
-#             if compare_or_normal:
-#                 answers = present_comparison(video_infor, comparison_questions)
-#             else:
-#                 answers = present_normal(video_infor, common_questions)
-#             survey_answers.append(answers)
-
-#     if input.button("Submit Answers"):
-#         print(survey_answers)
-#         with open(answers_path.format(survey_uuid), "w") as f:
-#             json.dump(survey_answers, f)
-    
-# if __name__ == "__main__":
-#     main()
+    start_server(survey, static_dir="./", port=8080)
