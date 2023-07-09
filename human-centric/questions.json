@@ -34,37 +34,15 @@
 	},
 	{
 		"name": "Bus_in_Rock_Tunnel",
-		"questions": [
-			{
-				"type": "short",
-				"question": "What number is on the front of the bus?"
-			},
-			{
-				"type": "short",
-				"question": "What number is on the license plate of the bus?"
-			},
-			{
-				"type": "short",
-				"question": "What is the text on the back of the bus?"
-			}
-		]
+		"questions": []
 	},
 	{
 		"name": "car_over_camera",
-		"questions": [
-			{
-				"type": "short",
-				"question": "What color is the car?"
-			}
-		]
+		"questions": []
 	},
 	{
 		"name": "Car_railcrossing",
 		"questions": [
-			{
-				"type": "short",
-				"question": "What color is the train?"
-			},
 			{
 				"type": "multiple",
 				"question": "What color is the traffic light?",
@@ -84,16 +62,7 @@
 	},
 	{
 		"name": "Cooking",
-		"questions": [
-			{
-				"type": "short",
-				"question": "What is the person in the video doing?"
-			},
-			{
-				"type": "short",
-				"question": "What is the main ingredient of the dish he's cooking?"
-			}
-		]
+		"questions": []
 	},
 	{
 		"name": "Eiffel Tower",
@@ -129,20 +98,7 @@
 	},
 	{
 		"name": "playing_ball",
-		"questions": [
-			{
-				"type": "short",
-				"question": "What color is the dog?"
-			},
-			{
-				"type": "short",
-				"question": "What color is the crow?"
-			},
-			{
-				"type": "short",
-				"question": "What color is the ball?"
-			}
-		]
+		"questions": []
 	},
 	{
 		"name": "Playing_on_water_slide",
@@ -173,10 +129,6 @@
 				"type": "multiple",
 				"question": "Is the plane taking off or landing?",
 				"options": ["taking off", "landing"]
-			},
-			{
-				"type": "short",
-				"question": "What is the main color of the plane?"
 			}
 		]
 	},

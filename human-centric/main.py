@@ -49,8 +49,8 @@ def ask_question(question):
             return linear_scale_question(question['question'])
         
 def broadcast_video(video_path):
-    frame_width = "320"
-    frame_height = "180"
+    frame_width = "640"
+    frame_height = "360"
     
     video_path = os.path.join("static", video_path)
     pywebio_battery.put_video(video_path, width=frame_width, height=frame_height)
