@@ -53,10 +53,5 @@
 		"type": "multiple",
 		"question": "Does the scene happen in daylight or at night?",
 		"options": ["in daylight", "at night"]
-	},
-	{
-		"id": "summary",
-		"type": "paragraph",
-		"question": "Summarized the video in your language."
 	}
 ]

@@ -13,16 +13,16 @@ questions_json = "human-centric/questions.json"
 survey_info_json = "human-centric/survey-information.json"
 original_path = "videos/original/{name}.webm"
 user_path = "videos/user-summaries/{name}_{user_idx}.webm"
-our_path = "videos/user-summaries/{name}_1.webm"
+our_path = "videos/our-summaries/{name}_keyframes.avi"
 answers_path = "human-centric/answers/{uuid}.json"
 
 def short_answer_question(question):
     answer = input.input(question)
     return answer
 
-def paragraph_question(question):
-    answer = input.textarea(question)
-    return answer
+# def paragraph_question(question):
+#     answer = input.textarea(question)
+#     return answer
 
 def multiple_choice_question(question, options):
     answer = input.radio(question, options)
@@ -56,14 +56,15 @@ def broadcast_video(video_path):
     pywebio_battery.put_video(video_path, width=frame_width, height=frame_height)
 
 def present_comparison(video_infor, comparison_questions):
-    output.put_markdown("### Original Video")
-    broadcast_video(original_path.format(name=video_infor['name']))
     output.put_markdown("### Summary Video")    
-    user_idx = random.randint(0, 15)
-    if user_idx:
+    user_idx = random.randint(1, 30)
+    if user_idx <= 15:
         broadcast_video(user_path.format(name=video_infor['name'], user_idx=user_idx))
     else:
         broadcast_video(our_path.format(name=video_infor['name']))
+        
+    output.put_markdown("### Original Video")
+    broadcast_video(original_path.format(name=video_infor['name']))
         
     results = []
     for question in comparison_questions:
@@ -77,14 +78,13 @@ def present_comparison(video_infor, comparison_questions):
     return results
     
 def present_normal(video_infor, common_questions):
-    user_idx = random.randint(-1, 15)
-    match user_idx:
-        case -1:
-            broadcast_video(original_path.format(name=video_infor['name']))
-        case 0:
-            broadcast_video(our_path.format(name=video_infor['name']))
-        case _:
-            broadcast_video(user_path.format(name=video_infor['name'], user_idx=user_idx))
+    user_idx = random.randint(0, 30)
+    if user_idx == 0:
+        broadcast_video(original_path.format(name=video_infor['name']))
+    elif user_idx > 15:
+        broadcast_video(our_path.format(name=video_infor['name']))
+    else:
+        broadcast_video(user_path.format(name=video_infor['name'], user_idx=user_idx))
             
     results = []
     for question in common_questions:
