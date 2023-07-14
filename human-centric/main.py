@@ -11,9 +11,9 @@ common_json = "human-centric/common-questions.json"
 comparison_json = "human-centric/comparison-questions.json"
 questions_json = "human-centric/questions.json"
 survey_info_json = "human-centric/survey-information.json"
-original_path = "videos/original/{name}.webm"
-user_path = "videos/user-summaries/{name}_{user_idx}.webm"
-our_path = "videos/our-summaries/{name}_keyframes.avi"
+original_path = "videos/orig/{name}.webm"
+user_path = "videos/user/{name}_{user_idx}.avi"
+our_path = "videos/our/{name}_keyframes.avi"
 answers_path = "human-centric/answers/{uuid}.json"
 
 def short_answer_question(question):
@@ -38,21 +38,21 @@ def linear_scale_question(question, lower_bound=0, upper_bound=10):
 
 def ask_question(question):
     question_type = question['type']
-    match question_type:
-        case 'short':
-            return short_answer_question(question['question'])
-        case 'multiple':
-            return multiple_choice_question(question['question'], question['options'])
-        case 'checkbox':
-            return checkbox_question(question['question'], question['options'])
-        case 'linear':
-            return linear_scale_question(question['question'])
+    if question_type == 'short':
+        return short_answer_question(question['question'])
+    elif question_type == 'multiple':
+        return multiple_choice_question(question['question'], question['options'])
+    elif question_type == 'checkbox':
+        return checkbox_question(question['question'], question['options'])
+    elif question_type == 'linear':
+        return linear_scale_question(question['question'])
         
 def broadcast_video(video_path):
     frame_width = "640"
     frame_height = "360"
     
     video_path = os.path.join("static", video_path)
+    print(f"Processing {video_path}")
     pywebio_battery.put_video(video_path, width=frame_width, height=frame_height)
 
 def present_comparison(video_infor, comparison_questions):
