@@ -1,0 +1,535 @@
+{
+	"Air_Force_One": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "standing still": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 },
+			"Is the plane taking off or landing?": { "landing": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "standing still": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 },
+			"Is the plane taking off or landing?": { "landing": 1 }
+		}
+	},
+	"Base jumping": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"1": 2,
+				"0": 1,
+				"2": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 4 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 4
+			},
+			"Is the point of view standing still or moving?": { "moving": 4 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 4 }
+		}
+	},
+	"Bearpark_climbing": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": {
+				"2": 3,
+				"3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 4 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 4
+			},
+			"Is the point of view standing still or moving?": { "moving": 4 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 4 },
+			"Is the bears climbing up or down the tree?": { "down": 4 },
+			"What color are the bears?": { "brown": 4 }
+		},
+		"our summary": {}
+	},
+	"Bike Polo": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": {
+				"more than 3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "at night": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"more than 3": 2
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": {
+				"standing still": 1,
+				"moving": 1
+			},
+			"Does the scene happen in daylight or at night?": { "at night": 2 }
+		}
+	},
+	"Bus_in_Rock_Tunnel": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": {
+				"2": 1,
+				"1": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"yes": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "standing still": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		}
+	},
+	"car_over_camera": { "original": {}, "user summary": {}, "our summary": {} },
+	"Car_railcrossing": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "2": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"yes": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 },
+			"What color is the traffic light?": { "red": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"1": 1,
+				"more than 3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"yes": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 },
+			"What color is the traffic light?": { "red": 2 }
+		}
+	},
+	"Cockpit_Landing": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "both": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 },
+			"Is the plane taking off or landing?": { "landing": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"2": 1,
+				"3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1,
+				"yes": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 },
+			"Is the plane taking off or landing?": { "landing": 1, "taking off": 1 }
+		}
+	},
+	"Cooking": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "1": 2 },
+			"Is the scene mainly outside or inside?": { "inside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": {
+				"moving": 1,
+				"standing still": 1
+			},
+			"Does the scene happen in daylight or at night?": { "at night": 2 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"more than 3": 1
+			},
+			"Is the scene mainly outside or inside?": { "inside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "at night": 1 }
+		}
+	},
+	"Eiffel Tower": {
+		"original": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "1": 2 },
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": { "1": 2 },
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": {
+				"standing still": 1,
+				"moving": 1
+			},
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		}
+	},
+	"Excavators river crossing": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": {
+				"2": 1,
+				"more than 3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"yes": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		},
+		"our summary": {}
+	},
+	"Fire Domino": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "inside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"yes": 1
+			},
+			"Is the point of view standing still or moving?": { "standing still": 1 },
+			"Does the scene happen in daylight or at night?": { "at night": 1 }
+		},
+		"our summary": {}
+	},
+	"Jumps": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": {
+				"2": 1,
+				"1": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"yes": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		}
+	},
+	"Kids_playing_in_leaves": {
+		"original": {
+			"How many of the main subjects are there in the video?": { "3": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		},
+		"user summary": {
+			"How many of the main subjects are there in the video?": {
+				"more than 3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"more than 3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		}
+	},
+	"Notre_Dame": {
+		"original": {},
+		"user summary": {},
+		"our summary": {
+			"How many of the main subjects are there in the video?": { "1": 3 },
+			"Is the scene mainly outside or inside?": { "both": 2, "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 3
+			},
+			"Is the point of view standing still or moving?": {
+				"moving": 2,
+				"standing still": 1
+			},
+			"Does the scene happen in daylight or at night?": { "in daylight": 3 }
+		}
+	},
+	"Paintball": {
+		"original": {},
+		"user summary": {},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"more than 3": 3,
+				"2": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 4 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"yes": 2,
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 4 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 4 }
+		}
+	},
+	"paluma_jump": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": {
+				"2": 1,
+				"more than 3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": { "standing still": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		},
+		"our summary": {}
+	},
+	"playing_ball": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "3": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"2": 1,
+				"more than 3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1,
+				"yes": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		}
+	},
+	"Playing_on_water_slide": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": {
+				"more than 3": 2
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"more than 3": 2
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": {
+				"standing still": 1,
+				"moving": 1
+			},
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		}
+	},
+	"Saving dolphines": {
+		"original": {},
+		"user summary": {},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"more than 3": 2
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1,
+				"yes": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 },
+			"What are people doing?": { "helping dolphins": 2 }
+		}
+	},
+	"Scuba": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"2": 1,
+				"0": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		}
+	},
+	"St Maarten Landing": {
+		"original": {},
+		"user summary": {},
+		"our summary": {}
+	},
+	"Statue of Liberty": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "1": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": { "3": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		}
+	},
+	"Uncut_Evening_Flight": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "1": 2 },
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": {
+				"standing still": 1,
+				"moving": 1
+			},
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": { "1": 2 },
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		}
+	},
+	"Valparaiso_Downhill": {
+		"original": {},
+		"user summary": {
+			"How many of the main subjects are there in the video?": { "0": 1 },
+			"Is the scene mainly outside or inside?": { "outside": 1 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 1
+			},
+			"Is the point of view standing still or moving?": { "moving": 1 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 1 }
+		},
+		"our summary": {
+			"How many of the main subjects are there in the video?": {
+				"1": 1,
+				"more than 3": 1
+			},
+			"Is the scene mainly outside or inside?": { "outside": 2 },
+			"Is there anything malicious/abnormal happening in the video?": {
+				"no": 2
+			},
+			"Is the point of view standing still or moving?": { "moving": 2 },
+			"Does the scene happen in daylight or at night?": { "in daylight": 2 }
+		}
+	}
+}

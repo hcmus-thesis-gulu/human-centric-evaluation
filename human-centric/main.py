@@ -91,14 +91,16 @@ def present_normal(video_infor, common_questions):
         answer = ask_question(question)
         result_obj = {
             "question": question,
-            "answer": answer
+            "answer": answer,
+            "user_index": user_idx,
         }
         results.append(result_obj)
     for question in video_infor['questions']:
         answer = ask_question(question)
         result_obj = {
             "question": question,
-            "answer": answer
+            "answer": answer,
+            "user_index": user_idx,
         }
         results.append(result_obj)
         
@@ -124,7 +126,8 @@ def survey():
         videos_to_ask = random.sample(video_infos, number_of_videos)
         for idx, video_infor in enumerate(videos_to_ask, start=1):
             output.put_markdown("## Video #{idx}".format(idx=idx))
-            compare_or_normal = random.randint(0, 1)
+            compare_or_normal = 0
+            # random.randint(0, 1)
             if compare_or_normal:
                 results = present_comparison(video_infor, comparison_questions)
             else:

@@ -1,0 +1,407 @@
+{
+	"Air_Force_One": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "object(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "object(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1
+			}
+		}
+	},
+	"Base jumping": {
+		"original": {
+			"What are the main subjects of the video?": { "human(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		},
+		"user summary": {
+			"What are the main subjects of the video?": {
+				"none of the above": 3,
+				"human(s)": 2
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 4
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "human(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		}
+	},
+	"Bearpark_climbing": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "animal(s)": 3 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 3
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "animal(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"children (1 year to 12 years)": 1,
+				"adults (18 years to 65 years)": 1
+			}
+		}
+	},
+	"Bike Polo": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "human(s)": 2 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adolescents (13 years to 17 years)": 2,
+				"adults (18 years to 65 years)": 2
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "human(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		}
+	},
+	"Bus_in_Rock_Tunnel": {
+		"original": {
+			"What are the main subjects of the video?": { "object(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		},
+		"user summary": {
+			"What are the main subjects of the video?": { "object(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "object(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1
+			}
+		}
+	},
+	"car_over_camera": { "original": {}, "user summary": {}, "our summary": {} },
+	"Car_railcrossing": {
+		"original": {
+			"What are the main subjects of the video?": {
+				"object(s)": 2,
+				"human(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 2
+			}
+		},
+		"user summary": {
+			"What are the main subjects of the video?": { "none of the above": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1,
+				"elders (above 65 years)": 1
+			}
+		},
+		"our summary": {}
+	},
+	"Cockpit_Landing": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": {
+				"object(s)": 1,
+				"building(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": {
+				"object(s)": 2,
+				"building(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 2
+			}
+		}
+	},
+	"Cooking": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": {
+				"object(s)": 1,
+				"human(s)": 2
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1,
+				"adults (18 years to 65 years)": 2
+			}
+		},
+		"our summary": {}
+	},
+	"Eiffel Tower": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": {
+				"object(s)": 2,
+				"building(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"children (1 year to 12 years)": 2,
+				"adolescents (13 years to 17 years)": 2,
+				"adults (18 years to 65 years)": 2,
+				"elders (above 65 years)": 2,
+				"infants (1 month to 1 year)": 1,
+				"none of the above": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": {
+				"object(s)": 1,
+				"building(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 2
+			}
+		}
+	},
+	"Excavators river crossing": {
+		"original": {},
+		"user summary": {},
+		"our summary": {
+			"What are the main subjects of the video?": {
+				"human(s)": 2,
+				"object(s)": 2
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 2,
+				"elders (above 65 years)": 1
+			}
+		}
+	},
+	"Fire Domino": {
+		"original": {},
+		"user summary": {},
+		"our summary": {
+			"What are the main subjects of the video?": { "object(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1
+			}
+		}
+	},
+	"Jumps": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "human(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "human(s)": 2 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 2
+			}
+		}
+	},
+	"Kids_playing_in_leaves": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "human(s)": 2 },
+			"Which are the main groups of ages appearing in the video?": {
+				"children (1 year to 12 years)": 2,
+				"adults (18 years to 65 years)": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": {
+				"human(s)": 1,
+				"object(s)": 1,
+				"building(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"children (1 year to 12 years)": 1,
+				"adults (18 years to 65 years)": 1
+			}
+		}
+	},
+	"Notre_Dame": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "building(s)": 2 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 2
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "building(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1
+			}
+		}
+	},
+	"Paintball": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "human(s)": 2 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adolescents (13 years to 17 years)": 1,
+				"adults (18 years to 65 years)": 2
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": {
+				"human(s)": 2,
+				"object(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 2
+			}
+		}
+	},
+	"paluma_jump": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "human(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "human(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		}
+	},
+	"playing_ball": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": {
+				"animal(s)": 1,
+				"object(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": {
+				"animal(s)": 2,
+				"object(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 2
+			}
+		}
+	},
+	"Playing_on_water_slide": {
+		"original": {},
+		"user summary": {},
+		"our summary": {
+			"What are the main subjects of the video?": {
+				"human(s)": 4,
+				"object(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"children (1 year to 12 years)": 4,
+				"adolescents (13 years to 17 years)": 1
+			}
+		}
+	},
+	"Saving dolphines": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": {
+				"human(s)": 2,
+				"animal(s)": 2
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 2,
+				"adolescents (13 years to 17 years)": 1
+			}
+		},
+		"our summary": {}
+	},
+	"Scuba": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "object(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": {
+				"human(s)": 1,
+				"animal(s)": 1,
+				"none of the above": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 2
+			}
+		}
+	},
+	"St Maarten Landing": {
+		"original": {},
+		"user summary": {},
+		"our summary": {}
+	},
+	"Statue of Liberty": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": {
+				"human(s)": 1,
+				"building(s)": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "object(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		}
+	},
+	"Uncut_Evening_Flight": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": { "object(s)": 2 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 2
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "object(s)": 2 },
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 2
+			}
+		}
+	},
+	"Valparaiso_Downhill": {
+		"original": {},
+		"user summary": {
+			"What are the main subjects of the video?": {
+				"building(s)": 1,
+				"none of the above": 1
+			},
+			"Which are the main groups of ages appearing in the video?": {
+				"none of the above": 1,
+				"adults (18 years to 65 years)": 1
+			}
+		},
+		"our summary": {
+			"What are the main subjects of the video?": { "human(s)": 1 },
+			"Which are the main groups of ages appearing in the video?": {
+				"adults (18 years to 65 years)": 1
+			}
+		}
+	}
+}
