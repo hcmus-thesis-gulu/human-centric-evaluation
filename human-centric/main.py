@@ -11,9 +11,9 @@ common_json = "human-centric/common-questions.json"
 comparison_json = "human-centric/comparison-questions.json"
 questions_json = "human-centric/questions.json"
 survey_info_json = "human-centric/survey-information.json"
-original_path = "videos/orig/{name}.webm"
-user_path = "videos/user/{name}_{user_idx}.avi"
-our_path = "videos/our/{name}_keyframes.avi"
+original_path = "videos/original/{name}.webm"
+user_path = "videos/user-summaries/{name}_{user_idx}.avi"
+our_path = "videos/our-summaries/{name}_keyframes.avi"
 answers_path = "human-centric/answers/{uuid}.json"
 
 def short_answer_question(question):

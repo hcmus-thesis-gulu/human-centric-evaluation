@@ -1,0 +1,628 @@
+[
+    {
+        "name": "Statue of Liberty",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "grading-understanding",
+                    "type": "linear",
+                    "question": "On the scale from 0 to 10, how much of the original video would you understand if you only watch the summary video?"
+                },
+                "user_index": 5,
+                "answer": 10
+            }
+        ]
+    },
+    {
+        "name": "Car_railcrossing",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "grading-understanding",
+                    "type": "linear",
+                    "question": "On the scale from 0 to 10, how much of the original video would you understand if you only watch the summary video?"
+                },
+                "user_index": 23,
+                "answer": 3
+            }
+        ]
+    },
+    {
+        "name": "Fire Domino",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "grading-understanding",
+                    "type": "linear",
+                    "question": "On the scale from 0 to 10, how much of the original video would you understand if you only watch the summary video?"
+                },
+                "user_index": 9,
+                "answer": 6
+            }
+        ]
+    },
+    {
+        "name": "Notre_Dame",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "grading-understanding",
+                    "type": "linear",
+                    "question": "On the scale from 0 to 10, how much of the original video would you understand if you only watch the summary video?"
+                },
+                "user_index": 20,
+                "answer": 9
+            }
+        ]
+    },
+    {
+        "name": "Uncut_Evening_Flight",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "main-subject",
+                    "type": "checkbox",
+                    "question": "What are the main subjects of the video?",
+                    "options": [
+                        "human(s)",
+                        "animal(s)",
+                        "object(s)",
+                        "building(s)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "object(s)"
+                ]
+            },
+            {
+                "question": {
+                    "id": "count-main",
+                    "type": "multiple",
+                    "question": "How many of the main subjects are there in the video?",
+                    "options": [
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "more than 3"
+                    ]
+                },
+                "answer": "1"
+            },
+            {
+                "question": {
+                    "id": "human-age",
+                    "type": "checkbox",
+                    "question": "Which are the main groups of ages appearing in the video?",
+                    "options": [
+                        "infants (1 month to 1 year)",
+                        "children (1 year to 12 years)",
+                        "adolescents (13 years to 17 years)",
+                        "adults (18 years to 65 years)",
+                        "elders (above 65 years)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "none of the above"
+                ]
+            },
+            {
+                "question": {
+                    "id": "out-inside",
+                    "type": "multiple",
+                    "question": "Is the scene mainly outside or inside?",
+                    "options": [
+                        "outside",
+                        "inside",
+                        "both"
+                    ]
+                },
+                "answer": "outside"
+            },
+            {
+                "question": {
+                    "id": "anomaly",
+                    "type": "multiple",
+                    "question": "Is there anything malicious/abnormal happening in the video?",
+                    "options": [
+                        "yes",
+                        "no"
+                    ]
+                },
+                "answer": "no"
+            },
+            {
+                "question": {
+                    "id": "pov",
+                    "type": "multiple",
+                    "question": "Is the point of view standing still or moving?",
+                    "options": [
+                        "standing still",
+                        "moving"
+                    ]
+                },
+                "answer": "moving"
+            },
+            {
+                "question": {
+                    "id": "day-night",
+                    "type": "multiple",
+                    "question": "Does the scene happen in daylight or at night?",
+                    "options": [
+                        "in daylight",
+                        "at night"
+                    ]
+                },
+                "answer": "in daylight"
+            }
+        ]
+    },
+    {
+        "name": "Eiffel Tower",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "grading-understanding",
+                    "type": "linear",
+                    "question": "On the scale from 0 to 10, how much of the original video would you understand if you only watch the summary video?"
+                },
+                "user_index": 1,
+                "answer": 3
+            }
+        ]
+    },
+    {
+        "name": "Bike Polo",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "main-subject",
+                    "type": "checkbox",
+                    "question": "What are the main subjects of the video?",
+                    "options": [
+                        "human(s)",
+                        "animal(s)",
+                        "object(s)",
+                        "building(s)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "human(s)"
+                ]
+            },
+            {
+                "question": {
+                    "id": "count-main",
+                    "type": "multiple",
+                    "question": "How many of the main subjects are there in the video?",
+                    "options": [
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "more than 3"
+                    ]
+                },
+                "answer": "more than 3"
+            },
+            {
+                "question": {
+                    "id": "human-age",
+                    "type": "checkbox",
+                    "question": "Which are the main groups of ages appearing in the video?",
+                    "options": [
+                        "infants (1 month to 1 year)",
+                        "children (1 year to 12 years)",
+                        "adolescents (13 years to 17 years)",
+                        "adults (18 years to 65 years)",
+                        "elders (above 65 years)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "adults (18 years to 65 years)"
+                ]
+            },
+            {
+                "question": {
+                    "id": "out-inside",
+                    "type": "multiple",
+                    "question": "Is the scene mainly outside or inside?",
+                    "options": [
+                        "outside",
+                        "inside",
+                        "both"
+                    ]
+                },
+                "answer": "outside"
+            },
+            {
+                "question": {
+                    "id": "anomaly",
+                    "type": "multiple",
+                    "question": "Is there anything malicious/abnormal happening in the video?",
+                    "options": [
+                        "yes",
+                        "no"
+                    ]
+                },
+                "answer": "no"
+            },
+            {
+                "question": {
+                    "id": "pov",
+                    "type": "multiple",
+                    "question": "Is the point of view standing still or moving?",
+                    "options": [
+                        "standing still",
+                        "moving"
+                    ]
+                },
+                "answer": "standing still"
+            },
+            {
+                "question": {
+                    "id": "day-night",
+                    "type": "multiple",
+                    "question": "Does the scene happen in daylight or at night?",
+                    "options": [
+                        "in daylight",
+                        "at night"
+                    ]
+                },
+                "answer": "at night"
+            }
+        ]
+    },
+    {
+        "name": "Jumps",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "main-subject",
+                    "type": "checkbox",
+                    "question": "What are the main subjects of the video?",
+                    "options": [
+                        "human(s)",
+                        "animal(s)",
+                        "object(s)",
+                        "building(s)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "human(s)"
+                ]
+            },
+            {
+                "question": {
+                    "id": "count-main",
+                    "type": "multiple",
+                    "question": "How many of the main subjects are there in the video?",
+                    "options": [
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "more than 3"
+                    ]
+                },
+                "answer": "1"
+            },
+            {
+                "question": {
+                    "id": "human-age",
+                    "type": "checkbox",
+                    "question": "Which are the main groups of ages appearing in the video?",
+                    "options": [
+                        "infants (1 month to 1 year)",
+                        "children (1 year to 12 years)",
+                        "adolescents (13 years to 17 years)",
+                        "adults (18 years to 65 years)",
+                        "elders (above 65 years)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "adults (18 years to 65 years)"
+                ]
+            },
+            {
+                "question": {
+                    "id": "out-inside",
+                    "type": "multiple",
+                    "question": "Is the scene mainly outside or inside?",
+                    "options": [
+                        "outside",
+                        "inside",
+                        "both"
+                    ]
+                },
+                "answer": "outside"
+            },
+            {
+                "question": {
+                    "id": "anomaly",
+                    "type": "multiple",
+                    "question": "Is there anything malicious/abnormal happening in the video?",
+                    "options": [
+                        "yes",
+                        "no"
+                    ]
+                },
+                "answer": "no"
+            },
+            {
+                "question": {
+                    "id": "pov",
+                    "type": "multiple",
+                    "question": "Is the point of view standing still or moving?",
+                    "options": [
+                        "standing still",
+                        "moving"
+                    ]
+                },
+                "answer": "moving"
+            },
+            {
+                "question": {
+                    "id": "day-night",
+                    "type": "multiple",
+                    "question": "Does the scene happen in daylight or at night?",
+                    "options": [
+                        "in daylight",
+                        "at night"
+                    ]
+                },
+                "answer": "in daylight"
+            }
+        ]
+    },
+    {
+        "name": "Bearpark_climbing",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "main-subject",
+                    "type": "checkbox",
+                    "question": "What are the main subjects of the video?",
+                    "options": [
+                        "human(s)",
+                        "animal(s)",
+                        "object(s)",
+                        "building(s)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "animal(s)"
+                ]
+            },
+            {
+                "question": {
+                    "id": "count-main",
+                    "type": "multiple",
+                    "question": "How many of the main subjects are there in the video?",
+                    "options": [
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "more than 3"
+                    ]
+                },
+                "answer": "2"
+            },
+            {
+                "question": {
+                    "id": "human-age",
+                    "type": "checkbox",
+                    "question": "Which are the main groups of ages appearing in the video?",
+                    "options": [
+                        "infants (1 month to 1 year)",
+                        "children (1 year to 12 years)",
+                        "adolescents (13 years to 17 years)",
+                        "adults (18 years to 65 years)",
+                        "elders (above 65 years)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "children (1 year to 12 years)",
+                    "adults (18 years to 65 years)"
+                ]
+            },
+            {
+                "question": {
+                    "id": "out-inside",
+                    "type": "multiple",
+                    "question": "Is the scene mainly outside or inside?",
+                    "options": [
+                        "outside",
+                        "inside",
+                        "both"
+                    ]
+                },
+                "answer": "outside"
+            },
+            {
+                "question": {
+                    "id": "anomaly",
+                    "type": "multiple",
+                    "question": "Is there anything malicious/abnormal happening in the video?",
+                    "options": [
+                        "yes",
+                        "no"
+                    ]
+                },
+                "answer": "no"
+            },
+            {
+                "question": {
+                    "id": "pov",
+                    "type": "multiple",
+                    "question": "Is the point of view standing still or moving?",
+                    "options": [
+                        "standing still",
+                        "moving"
+                    ]
+                },
+                "answer": "moving"
+            },
+            {
+                "question": {
+                    "id": "day-night",
+                    "type": "multiple",
+                    "question": "Does the scene happen in daylight or at night?",
+                    "options": [
+                        "in daylight",
+                        "at night"
+                    ]
+                },
+                "answer": "in daylight"
+            },
+            {
+                "question": {
+                    "type": "multiple",
+                    "question": "Is the bears climbing up or down the tree?",
+                    "options": [
+                        "up",
+                        "down"
+                    ]
+                },
+                "answer": "down"
+            },
+            {
+                "question": {
+                    "type": "multiple",
+                    "question": "What color are the bears?",
+                    "options": [
+                        "black",
+                        "brown",
+                        "white",
+                        "others"
+                    ]
+                },
+                "answer": "brown"
+            }
+        ]
+    },
+    {
+        "name": "Cockpit_Landing",
+        "survey_results": [
+            {
+                "question": {
+                    "id": "main-subject",
+                    "type": "checkbox",
+                    "question": "What are the main subjects of the video?",
+                    "options": [
+                        "human(s)",
+                        "animal(s)",
+                        "object(s)",
+                        "building(s)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "object(s)"
+                ]
+            },
+            {
+                "question": {
+                    "id": "count-main",
+                    "type": "multiple",
+                    "question": "How many of the main subjects are there in the video?",
+                    "options": [
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "more than 3"
+                    ]
+                },
+                "answer": "1"
+            },
+            {
+                "question": {
+                    "id": "human-age",
+                    "type": "checkbox",
+                    "question": "Which are the main groups of ages appearing in the video?",
+                    "options": [
+                        "infants (1 month to 1 year)",
+                        "children (1 year to 12 years)",
+                        "adolescents (13 years to 17 years)",
+                        "adults (18 years to 65 years)",
+                        "elders (above 65 years)",
+                        "none of the above"
+                    ]
+                },
+                "answer": [
+                    "none of the above"
+                ]
+            },
+            {
+                "question": {
+                    "id": "out-inside",
+                    "type": "multiple",
+                    "question": "Is the scene mainly outside or inside?",
+                    "options": [
+                        "outside",
+                        "inside",
+                        "both"
+                    ]
+                },
+                "answer": "both"
+            },
+            {
+                "question": {
+                    "id": "anomaly",
+                    "type": "multiple",
+                    "question": "Is there anything malicious/abnormal happening in the video?",
+                    "options": [
+                        "yes",
+                        "no"
+                    ]
+                },
+                "answer": "no"
+            },
+            {
+                "question": {
+                    "id": "pov",
+                    "type": "multiple",
+                    "question": "Is the point of view standing still or moving?",
+                    "options": [
+                        "standing still",
+                        "moving"
+                    ]
+                },
+                "answer": "moving"
+            },
+            {
+                "question": {
+                    "id": "day-night",
+                    "type": "multiple",
+                    "question": "Does the scene happen in daylight or at night?",
+                    "options": [
+                        "in daylight",
+                        "at night"
+                    ]
+                },
+                "answer": "in daylight"
+            },
+            {
+                "question": {
+                    "type": "multiple",
+                    "question": "Is the plane taking off or landing?",
+                    "options": [
+                        "taking off",
+                        "landing"
+                    ]
+                },
+                "answer": "landing"
+            }
+        ]
+    }
+]
