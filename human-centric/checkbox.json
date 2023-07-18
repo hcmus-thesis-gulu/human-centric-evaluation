@@ -76,13 +76,13 @@
 				"adults (18 years to 65 years)": 1
 			}
 		},
-		"user summary": {
+		"our summary": {
 			"What are the main subjects of the video?": { "object(s)": 1 },
 			"Which are the main groups of ages appearing in the video?": {
 				"adults (18 years to 65 years)": 1
 			}
 		},
-		"our summary": {
+		"user summary": {
 			"What are the main subjects of the video?": { "object(s)": 1 },
 			"Which are the main groups of ages appearing in the video?": {
 				"none of the above": 1
@@ -152,12 +152,7 @@
 				"building(s)": 1
 			},
 			"Which are the main groups of ages appearing in the video?": {
-				"children (1 year to 12 years)": 2,
-				"adolescents (13 years to 17 years)": 2,
-				"adults (18 years to 65 years)": 2,
-				"elders (above 65 years)": 2,
-				"infants (1 month to 1 year)": 1,
-				"none of the above": 1
+				"none of the above": 2
 			}
 		},
 		"our summary": {
@@ -339,8 +334,7 @@
 		"our summary": {
 			"What are the main subjects of the video?": {
 				"human(s)": 1,
-				"animal(s)": 1,
-				"none of the above": 1
+				"animal(s)": 1
 			},
 			"Which are the main groups of ages appearing in the video?": {
 				"adults (18 years to 65 years)": 2
@@ -364,7 +358,7 @@
 			}
 		},
 		"our summary": {
-			"What are the main subjects of the video?": { "object(s)": 1 },
+			"What are the main subjects of the video?": { "building(s)": 1 },
 			"Which are the main groups of ages appearing in the video?": {
 				"adults (18 years to 65 years)": 1
 			}
@@ -389,7 +383,7 @@
 		"original": {},
 		"user summary": {
 			"What are the main subjects of the video?": {
-				"building(s)": 1,
+				"human(s)": 1,
 				"none of the above": 1
 			},
 			"Which are the main groups of ages appearing in the video?": {
