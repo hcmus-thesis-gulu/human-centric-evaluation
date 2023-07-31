@@ -5,38 +5,38 @@ import scipy.io
 
 data_path = 'data/eccv16_dataset_summe_google_pool5.h5'
 
-with h5py.File(data_path, "r") as hdf:
-    for name, vid in hdf.items():
-        user_summary = np.array(vid['user_summary'])
-        break
+# with h5py.File(data_path, "r") as hdf:
+#     for name, vid in hdf.items():
+#         user_summary = np.array(vid['user_summary'])
+#         break
 
 
-groundtruth_file = 'data/GT/Air_Force_One.mat'
-groundtruth_data = scipy.io.loadmat(groundtruth_file)
+# groundtruth_file = 'data/GT/Air_Force_One.mat'
+# groundtruth_data = scipy.io.loadmat(groundtruth_file)
      
-user_score = groundtruth_data.get('user_score')
+# user_score = groundtruth_data.get('user_score')
 
-total_frames = user_score.shape[0]
-total_users = user_score.shape[1]
+# total_frames = user_score.shape[0]
+# total_users = user_score.shape[1]
 
-groundtruth_score = groundtruth_data.get('gt_score')
-groundtruth_score = np.array(groundtruth_score)
+# groundtruth_score = groundtruth_data.get('gt_score')
+# groundtruth_score = np.array(groundtruth_score)
 
-sample_score_file = 'output/clustering/Air_Force_One_scores.npy'
-sample_scores = np.load(sample_score_file)
-sample_index_file = 'output/features/Air_Force_One_samples.npy'
-sample_indexes = np.load(sample_index_file)
-prediction_scores = np.zeros(total_frames)
-prediction_scores[sample_indexes] = sample_scores
+# sample_score_file = 'output/clustering/Air_Force_One_scores.npy'
+# sample_scores = np.load(sample_score_file)
+# sample_index_file = 'output/features/Air_Force_One_samples.npy'
+# sample_indexes = np.load(sample_index_file)
+# prediction_scores = np.zeros(total_frames)
+# prediction_scores[sample_indexes] = sample_scores
 
-keyframe_index_file = 'output/clustering/Air_Force_One_keyframes.npy'
-keyframe_indexes = np.load(keyframe_index_file)
+# keyframe_index_file = 'output/clustering/Air_Force_One_keyframes.npy'
+# keyframe_indexes = np.load(keyframe_index_file)
 
-selected_keyframes = np.zeros((total_frames), dtype=int)
-selected_keyframes[keyframe_indexes] = 1
+# selected_keyframes = np.zeros((total_frames), dtype=int)
+# selected_keyframes[keyframe_indexes] = 1
 
-print(prediction_scores.shape, selected_keyframes.shape)
-print(selected_keyframes.sum(), keyframe_indexes.shape)
+# print(prediction_scores.shape, selected_keyframes.shape)
+# print(selected_keyframes.sum(), keyframe_indexes.shape)
 
 # for i in range(total_frames):
     # print(selected_keyframes[i])
@@ -77,6 +77,6 @@ def evaluate_summary(predicted_summary, user_summary, eval_method):
         return sum(f_scores)/len(f_scores)
 
 
-f_score = evaluate_summary(predicted_summary=selected_keyframes, 
-                           user_summary=user_summary, eval_method='max')
-print(f_score)
+# f_score = evaluate_summary(predicted_summary=selected_keyframes, 
+#                            user_summary=user_summary, eval_method='max')
+# print(f_score)

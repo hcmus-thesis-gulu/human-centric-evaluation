@@ -29,7 +29,10 @@ def evaluateSummaries(groundtruth_folder, summary_folder, result_folder,
             
             if os.path.exists(scores_path):
                 scores = np.load(scores_path)
-                keyframe_indices = np.load(keyframes_path)
+                if mode == 'shot':
+                    keyframe_indices = None
+                else:
+                    keyframe_indices = np.load(keyframes_path)
                 
                 eval_results = evaluateSummary(scores=scores,
                                                user_summary=user_summary,
@@ -136,7 +139,10 @@ def testSummaries(groundtruth_folder, summary_folder, result_folder,
         
         if os.path.exists(scores_path):
             scores = np.load(scores_path)
-            keyframe_indices = np.load(keyframes_path)
+            if mode == 'shot':
+                keyframe_indices = None
+            else:
+                keyframe_indices = np.load(keyframes_path)
             
             eval_results = evaluateSummary(scores=scores,
                                            user_summary=user_summary,
