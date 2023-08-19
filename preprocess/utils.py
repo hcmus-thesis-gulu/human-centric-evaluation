@@ -29,7 +29,7 @@ def broadcast_segment(output_video_path, raw_video, segments, scores,
                                  key_length=summary_length
                                  )
 
-    fourcc = cv.VideoWriter_fourcc(*'VP90')
+    fourcc = cv.VideoWriter_fourcc(*ext)
     video = cv.VideoWriter(output_video_path, fourcc,
                            float(fps), (width, height))
     cur_idx = 0
@@ -52,7 +52,7 @@ def broadcast_segment(output_video_path, raw_video, segments, scores,
 
 
 def broadcast_fragment(output_video_path, raw_video, frame_indices,
-                       summary_length, fps, width, height):
+                       summary_length, fps, width, height, ext):
     # Length of the fragment around each keyframe
     fragment_length = summary_length // len(frame_indices)
     print(f'Length of the fragment: {fragment_length}')
@@ -61,7 +61,7 @@ def broadcast_fragment(output_video_path, raw_video, frame_indices,
     fragment_width = max(0, (fragment_length - 1) // 2)
     print(f'Width of fragments: {fragment_width}')
 
-    fourcc = cv.VideoWriter_fourcc(*'VP90')
+    fourcc = cv.VideoWriter_fourcc(*ext)
     video = cv.VideoWriter(output_video_path, fourcc,
                            float(fps), (width, height))
     cur_idx = 0
@@ -88,7 +88,7 @@ def broadcast_fragment(output_video_path, raw_video, frame_indices,
 
 
 def broadcast_video(input_video_path, input, output_video_path, segments,
-                    max_length, sum_rate, fps=None):
+                    max_length, sum_rate, fps=None, extension='webm'):
     raw_video = cv.VideoCapture(input_video_path)
     width = int(raw_video.get(cv.CAP_PROP_FRAME_WIDTH))
     height = int(raw_video.get(cv.CAP_PROP_FRAME_HEIGHT))
@@ -111,6 +111,9 @@ def broadcast_video(input_video_path, input, output_video_path, segments,
                          len(input))
     print(f'Frames in the summary: {summary_length}')
 
+    ext = 'MPJG' if extension == 'mp4' else 'VP90'
+    print(f'Extension {extension} uses engine {ext}')
+
     if segments is not None:
         broadcast_segment(output_video_path=output_video_path,
                           raw_video=raw_video,
@@ -119,7 +122,9 @@ def broadcast_video(input_video_path, input, output_video_path, segments,
                           summary_length=summary_length,
                           fps=fps,
                           width=width,
-                          height=height)
+                          height=height,
+                          ext=ext
+                          )
     else:
         broadcast_fragment(output_video_path=output_video_path,
                            raw_video=raw_video,
@@ -127,6 +132,8 @@ def broadcast_video(input_video_path, input, output_video_path, segments,
                            summary_length=summary_length,
                            fps=fps,
                            width=width,
-                           height=height)
+                           height=height,
+                           ext=ext
+                           )
 
     raw_video.release()

@@ -8,7 +8,8 @@ from preprocess.utils import broadcast_video
 
 # Adopt shot-based video materialization also for machine-generated summary
 def materialize_video(video_folder, summary_folder, demo_folder, video_name,
-                      segmentation, max_length, sum_rate, fps=None):
+                      segmentation, max_length, sum_rate, fps=None,
+                      extension='webm'):
     raw_video_path = os.path.join(video_folder, f'{video_name}.mp4')
 
     if segmentation is not None:
@@ -21,7 +22,7 @@ def materialize_video(video_folder, summary_folder, demo_folder, video_name,
                               segment['num_frames']]
                              for segment in segmentation])
 
-        output_file = f'{video_name}_shots.webm'
+        output_file = f'{video_name}_shots.{extension}'
         output_path = os.path.join(demo_folder, output_file)
     else:
         keyframes_file = f'{video_name}_keyframes.npy'
@@ -31,7 +32,7 @@ def materialize_video(video_folder, summary_folder, demo_folder, video_name,
 
         segments = None
 
-        output_file = f'{video_name}_keyframes.webm'
+        output_file = f'{video_name}_keyframes.{extension}'
         output_path = os.path.join(demo_folder, output_file)
 
     broadcast_video(input_video_path=raw_video_path,
@@ -40,12 +41,13 @@ def materialize_video(video_folder, summary_folder, demo_folder, video_name,
                     segments=segments,
                     max_length=max_length,
                     sum_rate=sum_rate,
-                    fps=fps
+                    fps=fps,
+                    extension=extension
                     )
 
 
 def materialize_videos(video_folder, summary_folder, demo_folder, shot,
-                       max_length, sum_rate, fps=None):
+                       max_length, sum_rate, fps=None, extension):
     video_files = os.listdir(video_folder)
 
     if shot is not None:
@@ -72,7 +74,9 @@ def materialize_videos(video_folder, summary_folder, demo_folder, shot,
                               segmentation=segments[video_name] if shot else None,
                               max_length=max_length,
                               sum_rate=sum_rate,
-                              fps=fps)
+                              fps=fps,
+                              extension=extension
+                              )
 
 
 def main():
@@ -92,6 +96,8 @@ def main():
                         help='maximum length of output video (in seconds)')
     parser.add_argument('--sum-rate', type=float, default=0.15,
                         help='rate of summary video (0 < rate < 1)')
+    parser.add_argument('--extension', type=str, default='webm',
+                        help='extension of output video')
 
     args = parser.parse_args()
 
@@ -101,7 +107,9 @@ def main():
                        shot=args.shot,
                        max_length=args.max_length,
                        sum_rate=args.sum_rate,
-                       fps=args.output_fps)
+                       fps=args.output_fps,
+                       extension=args.extension
+                       )
 
 
 if __name__ == '__main__':
