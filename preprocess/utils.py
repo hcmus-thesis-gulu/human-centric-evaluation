@@ -113,6 +113,7 @@ def broadcast_video(input_video_path, input, output_video_path, segments,
 
     ext = 'VP90' if extension == 'webm' else 'MPJG'
     print(f'Extension {extension} uses engine {ext}')
+    print(f'Output video path: {output_video_path}')
 
     if segments is not None:
         broadcast_segment(output_video_path=output_video_path,
