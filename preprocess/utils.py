@@ -22,7 +22,7 @@ def count_frames(video_path):
 
 
 def broadcast_segment(output_video_path, raw_video, segments, scores,
-                      summary_length, fps, width, height):
+                      summary_length, fps, width, height, ext):
     keyframes = generate_summary(segments=segments,
                                  scores=scores,
                                  fill_mode='linear',
@@ -111,7 +111,7 @@ def broadcast_video(input_video_path, input, output_video_path, segments,
                          len(input))
     print(f'Frames in the summary: {summary_length}')
 
-    ext = 'MPJG' if extension == 'mp4' else 'VP90'
+    ext = 'VP90' if extension == 'webm' else 'MPJG'
     print(f'Extension {extension} uses engine {ext}')
 
     if segments is not None:
