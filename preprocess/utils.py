@@ -43,10 +43,9 @@ def broadcast_segment(output_video_path, raw_video, segments, scores,
         if keyframes[cur_idx] > 0:
             video.write(frame)
 
-        print(f'cur_idx: {cur_idx}')
         if cur_idx in keyframes:
             pbar.update(1)
-            print("===KEYFRAME===")
+            print(f"===KEYFRAME {cur_idx}===")
 
         cur_idx += 1
 
