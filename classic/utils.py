@@ -42,18 +42,18 @@ def generate_summary(segments, scores, fill_mode, key_length):
     :param np.ndarray scores: The indices of sub-sampled frames in the original video together with its predicted importances.
     :param str fill_mode: The method to use for filling the missing frames in the original video.
     :param float key_length: The number of frames to be selected for the summary.
-    :return: A list containing the indices of the selected frames for the -original- testing video.
+    :return: A binary list with ones denoting indices of the selected frames for the -original- testing video.
     """
-    
+
     # Get shots' boundaries
     # The segmentation is [number_of_shots, 3]
     # The scores is [number_of_subsampled_frames, 2]
-    
+
     shot_bound = segments[:, :-1]  # [number_of_shots, 2]
     frame_init_scores = scores[:, 1]
     shot_frames = segments[:, -1]
     positions = scores[:, 0]
-    
+
     n_frames = shot_frames.sum()
 
     # Compute the importance scores for the initial frame sequence (not the sub-sampled one)
@@ -63,9 +63,9 @@ def generate_summary(segments, scores, fill_mode, key_length):
                                   fill_value=(frame_init_scores[0],
                                               frame_init_scores[-1])
                                   )
-    
+
     frame_scores = scorer(np.arange(n_frames))
-    
+
     # Compute shot-level importance scores by taking the average importance scores of all frames in the shot
     shot_imp_scores = []
     shot_lengths = []

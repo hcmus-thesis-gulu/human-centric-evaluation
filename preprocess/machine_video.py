@@ -4,69 +4,67 @@ import numpy as np
 import json
 
 from preprocess.utils import broadcast_video
-from classic.utils import generate_summary
 
 
 # Adopt shot-based video materialization also for machine-generated summary
 def materialize_video(video_folder, summary_folder, demo_folder, video_name,
                       segmentation, max_length, sum_rate, fps=None):
     raw_video_path = os.path.join(video_folder, f'{video_name}.mp4')
-    
+
     if segmentation is not None:
         scores_file = f'{video_name}_scores.npy'
         scores_path = os.path.join(summary_folder, scores_file)
         scores = np.load(scores_path)
-        
+        input = scores
+
         segments = np.array([[segment['start'], segment['end'],
                               segment['num_frames']]
                              for segment in segmentation])
-        
-        keyframes = generate_summary(segments=segments,
-                                     scores=scores,
-                                     fill_mode='linear',
-                                     key_length=max_length
-                                     )
-        
-        output_file = f'{video_name}_shots.avi'
+
+        output_file = f'{video_name}_shots.webm'
         output_path = os.path.join(demo_folder, output_file)
     else:
         keyframes_file = f'{video_name}_keyframes.npy'
         keyframes_path = os.path.join(summary_folder, keyframes_file)
         keyframes = np.load(keyframes_path)
-        
-        output_file = f'{video_name}_keyframes.avi'
+        input = keyframes
+
+        segments = None
+
+        output_file = f'{video_name}_keyframes.webm'
         output_path = os.path.join(demo_folder, output_file)
-    
+
     broadcast_video(input_video_path=raw_video_path,
-                    frame_indices=keyframes,
+                    input=input,
                     output_video_path=output_path,
+                    segments=segments,
                     max_length=max_length,
                     sum_rate=sum_rate,
                     fps=fps
                     )
-        
+
 
 def materialize_videos(video_folder, summary_folder, demo_folder, shot,
                        max_length, sum_rate, fps=None):
     video_files = os.listdir(video_folder)
-    
+
     if shot is not None:
         print(f'Shot-based summary with shots from {shot}')
         segmentations_file = 'segmentations.json'
         segmentations_path = os.path.join(shot, segmentations_file)
         segmentations = json.load(open(segmentations_path, 'r',
                                        encoding='utf-8'))
-        
+
         segments = {
             segmentation['video_name']: segmentation['segments']
             for segmentation in segmentations.values()
         }
-    
+
     for video_file in video_files:
         if video_file.endswith('.mp4'):
             video_name = video_file.split('.')[0]
             print(f'Processing {video_name}')
-            
+
             materialize_video(video_folder=video_folder,
                               summary_folder=summary_folder,
                               demo_folder=demo_folder,
