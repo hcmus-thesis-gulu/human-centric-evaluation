@@ -83,7 +83,7 @@ def main():
                         help='path to output folder for clustering')
     parser.add_argument('--demo-folder', type=str, required=True,
                         help='path to folder saving demo videos')
-    
+
     parser.add_argument('--shot', type=str, default=None,
                         help='Path to folder containing shots for '
                         + 'shot-based summary')
@@ -94,7 +94,7 @@ def main():
                         help='rate of summary video (0 < rate < 1)')
 
     args = parser.parse_args()
-    
+
     materialize_videos(video_folder=args.video_folder,
                        summary_folder=args.summary_folder,
                        demo_folder=args.demo_folder,

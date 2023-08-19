@@ -1,5 +1,6 @@
 import cv2 as cv
 from tqdm import tqdm
+import numpy as np
 from classic.utils import generate_summary
 
 
@@ -20,7 +21,8 @@ def count_frames(video_path):
     return fps, count
 
 
-def broadcast_segment(output_video_path, raw_video, segments, scores, summary_length, fps, width, height):
+def broadcast_segment(output_video_path, raw_video, segments, scores,
+                      summary_length, fps, width, height):
     keyframes = generate_summary(segments=segments,
                                  scores=scores,
                                  fill_mode='linear',
@@ -31,7 +33,7 @@ def broadcast_segment(output_video_path, raw_video, segments, scores, summary_le
     video = cv.VideoWriter(output_video_path, fourcc,
                            float(fps), (width, height))
     cur_idx = 0
-    pbar = tqdm(total=len(keyframes))
+    pbar = tqdm(total=np.count_nonzero(keyframes))
 
     while True:
         ret, frame = raw_video.read()
@@ -41,8 +43,10 @@ def broadcast_segment(output_video_path, raw_video, segments, scores, summary_le
         if keyframes[cur_idx] > 0:
             video.write(frame)
 
+        print(f'cur_idx: {cur_idx}')
         if cur_idx in keyframes:
             pbar.update(1)
+            print("===KEYFRAME===")
 
         cur_idx += 1
 
@@ -50,7 +54,8 @@ def broadcast_segment(output_video_path, raw_video, segments, scores, summary_le
     video.release()
 
 
-def broadcast_fragment(output_video_path, raw_video, frame_indices, summary_length, fps, width, height):
+def broadcast_fragment(output_video_path, raw_video, frame_indices,
+                       summary_length, fps, width, height):
     # Length of the fragment around each keyframe
     fragment_length = summary_length // len(frame_indices)
     print(f'Length of the fragment: {fragment_length}')
