@@ -111,7 +111,7 @@ def broadcast_video(input_video_path, input, output_video_path, segments,
                          len(input))
     print(f'Frames in the summary: {summary_length}')
 
-    ext = 'VP90' if extension == 'webm' else 'MPJG'
+    ext = 'VP90' if extension == 'webm' else 'MJPG'
     print(f'Extension {extension} uses engine {ext}')
     print(f'Output video path: {output_video_path}')
 
