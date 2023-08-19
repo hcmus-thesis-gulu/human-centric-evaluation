@@ -107,15 +107,16 @@ def broadcast_video(input_video_path, input, output_video_path, segments,
     estimated_length = int(video_length * sum_rate)
 
     # Final number of frames of the summary
-    summary_length = max(min(frames_length, estimated_length),
-                         len(input))
-    print(f'Frames in the summary: {summary_length}')
-
+    target_length = min(frames_length, estimated_length)
     ext = 'VP90' if extension == 'webm' else 'MJPG'
+
     print(f'Extension {extension} uses engine {ext}')
     print(f'Output video path: {output_video_path}')
 
     if segments is not None:
+        summary_length = target_length
+        print(f'Frames in the summary: {summary_length}')
+
         broadcast_segment(output_video_path=output_video_path,
                           raw_video=raw_video,
                           segments=segments,
@@ -127,6 +128,9 @@ def broadcast_video(input_video_path, input, output_video_path, segments,
                           ext=ext
                           )
     else:
+        summary_length = max(target_length, len(input))
+        print(f'Frames in the summary: {summary_length}')
+
         broadcast_fragment(output_video_path=output_video_path,
                            raw_video=raw_video,
                            frame_indices=input,
