@@ -8,8 +8,8 @@ from preprocess.utils import broadcast_video
 
 # Adopt shot-based video materialization also for machine-generated summary
 def materialize_video(video_folder, summary_folder, demo_folder, video_name,
-                      segmentation, max_length, sum_rate, fps=None,
-                      extension='webm'):
+                      segmentation, max_length, sum_rate, fps,
+                      extension):
     raw_video_path = os.path.join(video_folder, f'{video_name}.mp4')
 
     if segmentation is not None:
@@ -47,7 +47,7 @@ def materialize_video(video_folder, summary_folder, demo_folder, video_name,
 
 
 def materialize_videos(video_folder, summary_folder, demo_folder, shot,
-                       max_length, sum_rate, fps=None, extension):
+                       max_length, sum_rate, fps=None, extension='webm'):
     video_files = os.listdir(video_folder)
 
     if shot is not None:

@@ -88,7 +88,7 @@ def broadcast_fragment(output_video_path, raw_video, frame_indices,
 
 
 def broadcast_video(input_video_path, input, output_video_path, segments,
-                    max_length, sum_rate, fps=None, extension='webm'):
+                    max_length, sum_rate, fps, extension):
     raw_video = cv.VideoCapture(input_video_path)
     width = int(raw_video.get(cv.CAP_PROP_FRAME_WIDTH))
     height = int(raw_video.get(cv.CAP_PROP_FRAME_HEIGHT))
