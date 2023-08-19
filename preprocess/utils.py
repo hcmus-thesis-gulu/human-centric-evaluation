@@ -138,3 +138,4 @@ def broadcast_video(input_video_path, input, output_video_path, segments,
                            )
 
     raw_video.release()
+    print(f'Video saved at {output_video_path}')
